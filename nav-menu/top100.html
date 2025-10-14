@@ -1,0 +1,2302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТОП 100</title>
+    <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        html, body {
+            min-height: 100vh;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #0c0d12 0%, #1a1b24 100%);
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 17, 25, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .logo a {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .logo a:hover {
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            transform: scale(1.05);
+        }
+        .account {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        .account a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .account a:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+        }
+        main h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+            grid-column: 1 / -1;
+        }
+        .anime-card-pop {
+            background: rgba(26, 27, 36, 0.8);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .anime-card-pop:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(255, 107, 107, 0.2);
+            border-color: rgba(255, 126, 179, 0.3);
+        }
+        .anime-card-pop img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .anime-card-pop:hover img {
+            transform: scale(1.05);
+        }
+        .anime-card-pop .info {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .anime-card-pop .title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #f5f5f5;
+        }
+        .anime-card-pop .meta {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            background: linear-gradient(90deg, #ff7eb3, #ff758c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            margin-top: 4rem;
+            padding: 3rem 1rem;
+            background: #12131a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .site-footer p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .footer-links a {
+            color: #ff7eb3;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #ff6b6b;
+            text-decoration: underline;
+        }
+
+        /* ACCESSIBILITY */
+        a:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 6px rgba(255, 107, 107, 0.2);
+            border-radius: 12px;
+        }
+
+        @media (max-width: 1200px) {
+            main {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            main {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo a {
+                font-size: 1.8rem;
+            }
+            .account a {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+            main h1 {
+                font-size: 2.2rem;
+            }
+            main {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .anime-card-pop img {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            main {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../БАЗа/home.html">Anitime</a>
+        </div>
+        <div class="account">
+            <a href="../вход/Вход.html">Вход</a>
+            <a href="../вход/регестрация.html">Регистрация</a>
+        </div>
+    </header>
+    <main>
+        <h1>ТОП 100</h1>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Фэнтези • Комедия</p>
+            </div>
+        </div>
+        <div class="anime-card-pop">
+            <img src="../../../img-anim/RB.webp" alt="Реинкарнация безработного">
+            <div class="info">
+                    <h3 class="title">Реинкарнация безработного</h3>
+                    <p class="meta">Фэнтези • Комедия</p>
+            </div>        

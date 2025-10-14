@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anitime - Анонсы аниме</title>
+    <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        html, body {
+            min-height: 100vh;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #0c0d12 0%, #1a1b24 100%);
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 17, 25, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .logo a {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .logo a:hover {
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            transform: scale(1.05);
+        }
+        .account {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        .account a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .account a:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .announcements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .announcement-card {
+            position: relative;
+            background: transparent;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            height: 400px; /* Fixed height to match image */
+        }
+        .announcement-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+        }
+        .announcement-card img {
+            width: 100%;
+            height: 100%; /* Image fills the entire card */
+            object-fit: cover; /* Fills the card, cropping if needed */
+            display: block;
+        }
+        .announcement-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(to top, rgba(15, 17, 25, 0.8), transparent);
+        }
+        .announcement-title h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff7eb3;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .announcement-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 17, 25, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .announcement-card:hover .announcement-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .announcement-content p {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-bottom: 1rem;
+        }
+        .announcement-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .announcement-meta span {
+            background: rgba(255, 107, 107, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            margin-top: 4rem;
+            padding: 3rem 1rem;
+            background: #12131a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .site-footer p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .footer-links a {
+            color: #ff7eb3;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #ff6b6b;
+            text-decoration: underline;
+        }
+
+        /* ACCESSIBILITY */
+        a:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 6px rgba(255, 107, 107, 0.2);
+            border-radius: 12px;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo a {
+                font-size: 1.8rem;
+            }
+            .account a {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+            .announcements {
+                grid-template-columns: 1fr;
+            }
+            .announcement-card {
+                height: 300px; /* Adjusted for mobile */
+            }
+            .announcement-title h2 {
+                font-size: 1.5rem;
+            }
+            .announcement-content p {
+                font-size: 0.95rem;
+            }
+            .announcement-meta {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../БАЗа/home.html">Anitime</a>
+        </div>
+        <div class="account">
+            <a href="./login.html">Вход</a>
+            <a href="./register.html">Регистрация</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="announcements">
+            <div class="announcement-card">
+                <img src="../img-anim/ATF.webp" alt="Атака титанов: Финал">
+                <div class="announcement-title">
+                    <h2>Атака титанов: Финал</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Заключительная часть эпической саги. Эрен и его друзья сталкиваются с судьбоносными решениями, которые определят будущее человечества.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 15.11.2025</span>
+                        <span>Жанр: Экшен, Драма</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/MB.webp" alt="Магическая битва 2">
+                <div class="announcement-title">
+                    <h2>Магическая битва 2</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Юдзи Итадори продолжает свою борьбу с проклятиями, раскрывая новые тайны и сталкиваясь с могущественными врагами.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 01.12.2025</span>
+                        <span>Жанр: Сёнэн, Фэнтези</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/ID.webp" alt="Клинок, рассекающий демонов 3">
+                <div class="announcement-title">
+                    <h2>Клинок, рассекающий демонов 3</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Танджиро и его товарищи отправляются в новую арку, чтобы сразиться с ещё более сильными демонами.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 20.12.2025</span>
+                        <span>Жанр: Экшен, Приключения</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/MGA.webp" alt="Моя геройская академия 7">
+                <div class="announcement-title">
+                    <h2>Моя геройская академия 7</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Деку и его друзья сталкиваются с новыми угрозами в мире, где герои и злодеи борются за власть.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 10.01.2026</span>
+                        <span>Жанр: Сёнэн, Экшен</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/ChBP.webp" alt="Человек-бензопила: Арка войны">
+                <div class="announcement-title">
+                    <h2>Человек-бензопила: Арка войны</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Дэндзи продолжает свою кровавую битву с демонами, раскрывая новые аспекты своего контракта.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 25.11.2025</span>
+                        <span>Жанр: Экшен, Ужасы</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/WPNC.webp" alt="Ван Пис: Новая сага">
+                <div class="announcement-title">
+                    <h2>Ван Пис: Новая сага</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Луффи и его команда отправляются на новый остров, полный загадок и опасностей.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 05.02.2026</span>
+                        <span>Жанр: Приключения, Фэнтези</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/CK4.webp" alt="Синий экзорцист 4">
+                <div class="announcement-title">
+                    <h2>Синий экзорцист 4</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Рин Окумура продолжает борьбу с демонами, раскрывая тайны своего происхождения.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 15.01.2026</span>
+                        <span>Жанр: Фэнтези, Экшен</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/TCP.jpg" alt="Тетрадь смерти: Перезапуск">
+                <div class="announcement-title">
+                    <h2>Тетрадь смерти: Перезапуск</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Новая история в мире Тетради смерти, где появляется новый владелец смертоносной книги.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 30.11.2025</span>
+                        <span>Жанр: Триллер, Мистика</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/NP.webp" alt="Наруто: Наследие">
+                <div class="announcement-title">
+                    <h2>Наруто: Наследие</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Новая глава в истории ниндзя, сосредоточенная на следующем поколении героев.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 12.12.2025</span>
+                        <span>Жанр: Сёнэн, Приключения</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/SA.jpg" alt="Стальной алхимик: Возвращение">
+                <div class="announcement-title">
+                    <h2>Стальной алхимик: Возвращение</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Братья Элрик возвращаются в новом приключении, полном алхимических тайн.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 20.01.2026</span>
+                        <span>Жанр: Фэнтези, Драма</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/MPVS.webp" alt="О моём перерождении в слизь 3">
+                <div class="announcement-title">
+                    <h2>О моём перерождении в слизь 3</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Римуру Темпест продолжает развивать свою нацию монстров, сталкиваясь с новыми вызовами.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 08.12.2025</span>
+                        <span>Жанр: Исекай, Фэнтези</span>
+                    </div>
+                </div>
+            </div>
+            <div class="announcement-card">
+                <img src="../img-anim/Bl.webp" alt="Блич: Тысячелетняя война">
+                <div class="announcement-title">
+                    <h2>Блич: Тысячелетняя война</h2>
+                </div>
+                <div class="announcement-content">
+                    <p>Ичиго Куросаки возвращается, чтобы сразиться в эпической битве за судьбу миров.</p>
+                    <div class="announcement-meta">
+                        <span>Дата выхода: 25.12.2025</span>
+                        <span>Жанр: Экшен, Сверхъестественное</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025 Anitime — Все права защищены</p>
+            <div class="footer-links">
+                <a href="../подвал/контакты.html">Контакты</a>
+                <a href="../подвал/проэкт.html">О проекте</a>
+                <a href="../подвал/конф.html">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
