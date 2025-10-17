@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформление заказа</title>
+    <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        html, body {
+            min-height: 100vh;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #0c0d12 0%, #1a1b24 100%);
+            color: #f5f5f5;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+        body {
+            flex: 1;
+        }
+        main {
+            max-width: 493px;
+            margin: 11rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            flex: 1;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 17, 25, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .logo a {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .logo a:hover {
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            transform: scale(1.05);
+        }
+        .account {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        .account a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .account a:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        /* MAIN */
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .checkout-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            position: relative;
+        }
+        .form-group label {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #f5f5f5;
+        }
+        .form-group input {
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f5f5f5;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #ff7eb3;
+            box-shadow: 0 0 8px rgba(255, 126, 179, 0.3);
+        }
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .form-group.error input {
+            border-color: #ff4d4d;
+        }
+        .error-message {
+            color: #ff4d4d;
+            font-size: 0.85rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+        .form-group.error .error-message {
+            display: block;
+        }
+        .card-details {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .card-details .form-group {
+            flex: 1;
+            min-width: 0;
+        }
+        .terms-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .terms-group input[type="checkbox"] {
+            width: 1.2rem;
+            height: 1.2rem;
+            accent-color: #ff7eb3;
+        }
+        .terms-group label {
+            font-size: 0.9rem;
+            color: #f5f5f5;
+        }
+        .terms-group label a {
+            color: #ff7eb3;
+            text-decoration: none;
+        }
+        .terms-group label a:hover {
+            text-decoration: underline;
+        }
+        .pay-button {
+            padding: 0.8rem;
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .pay-button:hover {
+            background: linear-gradient(90deg, #ff6b6b, #ff7eb3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+        .pay-button:disabled {
+            background: rgba(255, 255, 255, 0.2);
+            cursor: not-allowed;
+        }
+        .pay-button.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #fff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        /* FOOTER */
+        .site-footer {
+            padding: 3rem 1rem;
+            background: #12131a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .site-footer p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .footer-links a {
+            color: #ff7eb3;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #ff6b6b;
+            text-decoration: underline;
+        }
+        /* ACCESSIBILITY */
+        a:focus-visible, input:focus-visible, button:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 6px rgba(255, 107, 107, 0.2);
+            border-radius: 12px;
+        }
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo a {
+                font-size: 1.8rem;
+            }
+            .account a {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+            main {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            .card-details {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="../База/home.html">Anitime</a>
+        </div>
+        <div class="account">
+            <a href="../вход/Вход.html">Вход</a>
+            <a href="../вход/регестрация.html">Регистрация</a>
+        </div>
+    </header>
+    <main>
+        <h1>Премиум 299₽</h1>
+        <form class="checkout-form" action="/process-payment" method="POST" id="checkout-form" novalidate>
+            <div class="form-group">
+                <label for="card-number">Номер карты</label>
+                <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" required maxlength="19" pattern="\d{4}\s?\d{4}\s?\d{4}\s?\d{4}" aria-describedby="card-number-error">
+                <span class="error-message" id="card-number-error">Введите корректный номер карты (16 цифр)</span>
+            </div>
+            <div class="card-details">
+                <div class="form-group">
+                    <label for="expiry-date">Срок действия</label>
+                    <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required maxlength="5" pattern="\d{2}/\d{2}" aria-describedby="expiry-date-error">
+                    <span class="error-message" id="expiry-date-error">Введите корректный срок действия (MM/YY)</span>
+                </div>
+                <div class="form-group">
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" name="cvc" placeholder="123" required maxlength="4" pattern="\d{3,4}" aria-describedby="cvc-error">
+                    <span class="error-message" id="cvc-error">Введите корректный CVC (3-4 цифры)</span>
+                </div>
+            </div>
+            <div class="terms-group">
+                <input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
+                <label for="terms">Я согласен с <a href="../подвал/условия.html">условиями использования</a> и <a href="../подвал/конф.html">политикой конфиденциальности</a></label>
+                <span class="error-message" id="terms-error">Необходимо согласиться с условиями</span>
+            </div>
+            <button type="submit" class="pay-button" id="pay-button">Оплатить</button>
+        </form>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025 Anitime — Все права защищены</p>
+            <div class="footer-links">
+                <a href="../подвал/контакты.html">Контакты</a>
+                <a href="../подвал/проэкт.html">О проекте</a>
+                <a href="../подвал/конф.html">Политика конфиденциальности</a>
+                <a href="../подвал/условия.html">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const cardNumber = document.getElementById('card-number');
+            const expiryDate = document.getElementById('expiry-date');
+            const cvc = document.getElementById('cvc');
+            const terms = document.getElementById('terms');
+            const payButton = document.getElementById('pay-button');
+            let isValid = true;
+
+            // Reset error states
+            [cardNumber, expiryDate, cvc, terms].forEach(input => {
+                input.closest('.form-group')?.classList.remove('error');
+                input.classList.remove('error');
+            });
+
+            // Card number validation
+            const cardNumberValue = cardNumber.value.replace(/\s/g, '');
+            if (!/^\d{16}$/.test(cardNumberValue)) {
+                cardNumber.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            // Expiry date validation
+            if (!/^\d{2}\/\d{2}$/.test(expiryDate.value)) {
+                expiryDate.closest('.form-group').classList.add('error');
+                isValid = false;
+            } else {
+                const [month, year] = expiryDate.value.split('/');
+                const currentYear = new Date().getFullYear() % 100;
+                const currentMonth = new Date().getMonth() + 1;
+                if (parseInt(month) < 1 || parseInt(month) > 12 || parseInt(year) < currentYear || (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
+                    expiryDate.closest('.form-group').classList.add('error');
+                    isValid = false;
+                }
+            }
+
+            // CVC validation
+            if (!/^\d{3,4}$/.test(cvc.value)) {
+                cvc.closest('.form-group').classList.add('error');
+                isValid = false;
+            }
+
+            // Terms validation
+            if (!terms.checked) {
+                terms.closest('.terms-group').classList.add('error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                payButton.disabled = true;
+                payButton.classList.add('loading');
+                payButton.textContent = 'Обработка...';
+                setTimeout(() => {
+                    // Simulate form submission
+                    alert('Оплата успешно обработана!');
+                    payButton.disabled = false;
+                    payButton.classList.remove('loading');
+                    payButton.textContent = 'Оплатить';
+                    this.reset();
+                }, 2000);
+            }
+        });
+
+        // Input formatting for card number
+        document.getElementById('card-number').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 16) value = value.slice(0, 16);
+            e.target.value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+        });
+
+        // Input formatting for expiry date
+        document.getElementById('expiry-date').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 4) value = value.slice(0, 4);
+            if (value.length >= 3) {
+                e.target.value = value.slice(0, 2) + '/' + value.slice(2);
+            } else {
+                e.target.value = value;
+            }
+        });
+    </script>
+</body>
+</html>
