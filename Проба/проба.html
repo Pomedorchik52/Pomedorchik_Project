@@ -3,1336 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anitime</title>
-    <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
+    <title>Калькулятор 2084</title>
     <style>
-        :root {
-            --bg-start: #0c0d12;
-            --bg-end: #1a1b24;
-            --surface: #181a24;
-            --surface-2: #12131a;
-            --text: #f5f5f5;
-            --muted: #d5d5d5;
-            --accent-1: #ff7eb3;
-            --accent-2: #ff758c;
-            --accent-3: #ff6b6b;
-            --ring: rgba(255, 126, 179, 0.55);
-            --shadow: 0 6px 18px rgba(0,0,0,0.4);
-            --shadow-lg: 0 12px 28px rgba(0,0,0,0.5);
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
-
-        html, body {
+        
+        body {
+            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
             min-height: 100vh;
-            font-family: "Inter", "Segoe UI", sans-serif;
-            background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
-            color: #f5f5f5;
-            line-height: 1.6;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 1.5rem 2rem;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 17, 25, 0.95);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-
-        .logo a {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            text-decoration: none;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
-
-        .logo a:hover {
-            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
-            transform: scale(1.05);
-        }
-
-        .account {
-            display: flex;
-            gap: 1.2rem;
-            align-items: center;
-        }
-
-        .account a {
-            padding: 0.6rem 1.2rem;
-            border-radius: 999px;
-            color: #fff;
-            text-decoration: none;
-            background: rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .account a:hover {
-            background: rgba(255, 107, 107, 0.2);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-        }
-
-        .nav-menu {
-            background: rgba(15, 17, 25, 0.95);
-            padding: 1rem 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-menu .account {
             justify-content: center;
-        }
-
-        .content {
-            text-align: center;
-            padding: 5rem 1rem;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            font-weight: 800;
-        }
-
-        .content p {
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-            font-size: 1.2rem;
-            color: #d5d5d5;
-        }
-
-        .popular-section {
-            padding: 3rem 1rem;
-        }
-
-        .popular-section h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-
-        .carousel {
-            position: relative;
-            max-width: 1200px;
-            margin: 2rem auto;
-            overflow: visible;
-        }
-
-        .carousel .viewport {
-            width: 90%;
-            margin: 0 auto;
-            overflow: hidden;
-            padding: 40px 0;
-        }
-
-        .carousel .track {
-            display: flex;
-            gap: 1rem;
-            transition: transform 420ms ease;
-            will-change: transform;
-        }
-
-        .carousel .slide {
-            border-radius: 16px;
-            overflow: hidden;
-            background: #181a24;
-            position: relative;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .carousel .slide:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .carousel .slide img {
-            width: 100%;
-            height: 365px;
-            object-fit: cover;
-            display: block;
-            border-radius: 16px;
-        }
-
-        .carousel .slide .info {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 0.9rem 1rem;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
-        }
-
-        .carousel .slide .title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #fff;
-            margin: 0 0 2px 0;
-        }
-
-        .carousel .slide .meta {
-            font-size: 0.85rem;
-            color: #d5d5d5;
-            margin: 0;
-        }
-
-        .carousel .slide .badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 0.3rem 0.6rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border-radius: 999px;
-            background: rgba(0,0,0,0.55);
-            color: #fff;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-
-        .carousel .slide::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
-            opacity: 0.85;
-            transition: opacity 0.25s ease;
-        }
-
-        .carousel .slide:hover::after {
-            opacity: 1;
-        }
-
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, rgba(255, 126, 179, 0.9), rgba(255, 107, 107, 0.9));
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            cursor: pointer;
-            display: grid;
-            place-items: center;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3), 0 4px 12px rgba(0,0,0,0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 3;
-            user-select: none;
-            opacity: 0.85;
-        }
-
-        .slider-btn:hover {
-            opacity: 1;
-            transform: translateY(-50%) translateY(-2px) scale(1.05);
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4), 0 6px 20px rgba(0,0,0,0.5);
-        }
-
-        .slider-btn:active {
-            transform: translateY(-50%) translateY(0) scale(0.95);
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3), 0 2px 8px rgba(0,0,0,0.4);
-        }
-
-        .slider-btn:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 126, 179, 0.6), 0 8px 25px rgba(255, 107, 107, 0.3);
-        }
-
-        .slider-btn-prev {
-            left: -20px;
-        }
-
-        .slider-btn-next {
-            right: -20px;
-        }
-
-        .custom-dropdown {
-            position: relative;
-            display: inline-block;
-            min-width: 200px;
-        }
-
-        .dropdown-button {
-            padding: 0.7rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
+            overflow: hidden;
+            position: relative;
         }
-
-        .dropdown-button:hover {
-            background: rgba(255,107,107,0.3);
-            transform: translateY(-2px);
-        }
-
-        .dropdown-button::after {
-            content: '▼';
-            font-size: 0.8rem;
-            margin-left: 10px;
-        }
-
-        .dropdown-menu {
+        
+        /* Анимированный фон */
+        body::before {
+            content: '';
             position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: #181a24;
-            border-radius: 12px;
-            margin-top: 0.5rem;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-            display: none;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(0, 255, 255, 0.03) 10px,
+                    rgba(0, 255, 255, 0.03) 20px
+                );
+            animation: slide 20s linear infinite;
+        }
+        
+        @keyframes slide {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .calculator {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 
+                0 0 50px rgba(0, 255, 255, 0.5),
+                inset 0 0 30px rgba(0, 255, 255, 0.1);
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            position: relative;
             z-index: 10;
+            backdrop-filter: blur(10px);
         }
-
-        .dropdown-menu.show {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-
-        .dropdown-item {
-            padding: 0.7rem 1.5rem;
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-item:hover {
-            background: rgba(255,107,107,0.2);
-        }
-
-        .filters {
-            margin: 3rem auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            max-width: 1200px;
-        }
-
-        .filters button {
-            padding: 0.7rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .filters button:hover {
-            background: rgba(255,107,107,0.3);
-            transform: translateY(-2px);
-        }
-
-        .anime-card {
-            background: #181a24;
-            border-radius: 16px;
-            padding: 1.2rem;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-        }
-
-        .anime-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 24px rgba(255,107,107,0.3);
-        }
-
-        .new-anime {
-            padding: 2rem 1rem;
-        }
-
-        .new-anime h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.2rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-
-        .nastrsmotvse {
+        
+        .display {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 50, 100, 0.5));
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
             text-align: right;
-            margin: 1rem 2rem;
+            font-size: 2.5em;
+            color: #00ffff;
+            font-weight: 900;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                inset 0 0 20px rgba(0, 255, 255, 0.3),
+                0 0 30px rgba(0, 255, 255, 0.2);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
         }
-
-        .smotvse {
-            color: var(--accent-1);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
+        
+        .display::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(0, 255, 255, 0.1) 50%,
+                transparent 70%
+            );
+            animation: scan 3s linear infinite;
         }
-
-        .smotvse:hover {
-            color: var(--accent-3);
-            text-decoration: underline;
+        
+        @keyframes scan {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
         }
-
-        .ranAnim {
+        
+        .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.5rem;
+            gap: 15px;
         }
-
-        .ranAnim .anime-card-pop {
-            border-radius: 16px;
-            overflow: hidden;
-            background: #181a24;
-            position: relative;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .ranAnim .anime-card-pop-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .ranAnim .anime-card-pop-link:hover .anime-card-pop {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .ranAnim .anime-card-pop img {
-            width: 100%;
-            height: 345px;
-            object-fit: cover;
-            display: block;
-            border-radius: 16px;
-        }
-
-        .ranAnim .anime-card-pop .info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .ranAnim .anime-card-pop .title {
-            font-size: 1.4rem;
+        
+        button {
+            background: linear-gradient(135deg, rgba(0, 50, 100, 0.7), rgba(0, 20, 50, 0.9));
+            border: 2px solid rgba(0, 255, 255, 0.4);
+            border-radius: 15px;
+            color: #00ffff;
+            font-size: 1.5em;
             font-weight: 700;
-            color: #fff;
-            margin: 0 0 4px 0;
-            line-height: 1.4;
-        }
-
-        .ranAnim .anime-card-pop .meta {
-            font-size: 1rem;
-            color: #d5d5d5;
-            margin: 0;
-        }
-
-        .ranAnim .anime-card-pop::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
-            opacity: 0.85;
-            transition: opacity 0.25s ease;
-        }
-
-        .ranAnim .anime-card-pop-link:hover .anime-card-pop::after {
-            opacity: 1;
-        }
-
-        .donat {
-            padding: 3rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .donat h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.2rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-
-        .donat-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            padding: 1.5rem;
-        }
-
-        .donat-card {
-            background: var(--surface);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 300px; /* Минимальная высота для одинакового размера карточек */
-        }
-
-        .donat-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .donat-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text);
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeInUp 0.5s ease forwards;
-        }
-
-        .donat-card .price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            margin-bottom: 0.5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeInUp 0.5s ease forwards;
-        }
-
-        .donat-card .duration {
-            font-size: 1rem;
-            color: var(--muted);
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeInUp 0.5s ease forwards;
-        }
-
-        .donat-card ul {
-            list-style: none;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(10px);
-            animation: fadeInUp 0.5s ease forwards;
-            flex-grow: 1; /* Список занимает оставшееся пространство */
-        }
-
-        .donat-card ul li {
-            color: var(--text);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
-
-        .donat-card ul li::before {
-            content: '✔';
-            position: absolute;
-            left: 0;
-            color: var(--accent-1);
-        }
-
-        .donat-btn {
-            width: 100%;
-            padding: 0.7rem;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-            color: #111;
-            font-weight: 700;
+            padding: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', monospace;
+        }
+        
+        button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.5) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+        
+        button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 
+                0 10px 30px rgba(0, 255, 255, 0.5),
+                0 0 20px rgba(0, 255, 255, 0.3);
+            border-color: rgba(0, 255, 255, 0.8);
+        }
+        
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+        
+        .operator {
+            background: linear-gradient(135deg, rgba(255, 100, 0, 0.7), rgba(150, 50, 0, 0.9));
+            border-color: rgba(255, 150, 0, 0.5);
+            color: #ffaa00;
+        }
+        
+        .operator:hover {
+            box-shadow: 
+                0 10px 30px rgba(255, 150, 0, 0.5),
+                0 0 20px rgba(255, 150, 0, 0.3);
+            border-color: rgba(255, 150, 0, 0.8);
+        }
+        
+        .equals {
+            background: linear-gradient(135deg, rgba(0, 255, 100, 0.7), rgba(0, 150, 50, 0.9));
+            border-color: rgba(0, 255, 100, 0.5);
+            color: #00ff64;
+            grid-column: span 2;
+        }
+        
+        .equals:hover {
+            box-shadow: 
+                0 10px 30px rgba(0, 255, 100, 0.5),
+                0 0 20px rgba(0, 255, 100, 0.3);
+            border-color: rgba(0, 255, 100, 0.8);
+        }
+        
+        .clear {
+            background: linear-gradient(135deg, rgba(255, 0, 100, 0.7), rgba(150, 0, 50, 0.9));
+            border-color: rgba(255, 0, 100, 0.5);
+            color: #ff0064;
+        }
+        
+        .clear:hover {
+            box-shadow: 
+                0 10px 30px rgba(255, 0, 100, 0.5),
+                0 0 20px rgba(255, 0, 100, 0.3);
+            border-color: rgba(255, 0, 100, 0.8);
+        }
+        
+        .zero {
+            grid-column: span 2;
+        }
+        
+        /* Голографический эффект */
+        .calculator::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(
+                45deg,
+                #00ffff,
+                #ff00ff,
+                #00ff00,
+                #ffff00,
+                #00ffff
+            );
+            border-radius: 30px;
             opacity: 0;
-            transform: translateY(10px);
-            animation: fadeInUp 0.5s ease forwards;
-            margin-top: auto; /* Прижимает кнопку к низу карточки */
+            z-index: -1;
+            animation: hologram 3s linear infinite;
         }
-
-        .donat-btn:hover {
-            filter: brightness(1.08);
-            transform: translateY(-2px);
+        
+        @keyframes hologram {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.5; }
         }
-
-        .donat-card:nth-child(1) h3 { animation-delay: 0.3s; }
-        .donat-card:nth-child(1) .price { animation-delay: 0.4s; }
-        .donat-card:nth-child(1) .duration { animation-delay: 0.5s; }
-        .donat-card:nth-child(1) ul { animation-delay: 0.7s; }
-        .donat-card:nth-child(1) .donat-btn { animation-delay: 0.7s; }
-
-        .donat-card:nth-child(2) h3 { animation-delay: 0.4s; }
-        .donat-card:nth-child(2) .price { animation-delay: 0.5s; }
-        .donat-card:nth-child(2) .duration { animation-delay: 0.5s; }
-        .donat-card:nth-child(2) ul { animation-delay: 0.7s; }
-        .donat-card:nth-child(2) .donat-btn { animation-delay: 0.8s; }
-
-        .donat-card:nth-child(3) h3 { animation-delay: 0.5s; }
-        .donat-card:nth-child(3) .price { animation-delay: 0.5s; }
-        .donat-card:nth-child(3) .duration { animation-delay: 0.7s; }
-        .donat-card:nth-child(3) ul { animation-delay: 0.8s; }
-        .donat-card:nth-child(3) .donat-btn { animation-delay: 0.9s; }
-
-        .donat-card:nth-child(4) h3 { animation-delay: 0.6s; }
-        .donat-card:nth-child(4) .price { animation-delay: 0.7s; }
-        .donat-card:nth-child(4) .duration { animation-delay: 0.8s; }
-        .donat-card:nth-child(4) ul { animation-delay: 0.9s; }
-        .donat-card:nth-child(4) .donat-btn { animation-delay: 0.10s; }
-
-        .donat-card:nth-child(5) h3 { animation-delay: 0.7s; }
-        .donat-card:nth-child(5) .price { animation-delay: 0.8s; }
-        .donat-card:nth-child(5) .duration { animation-delay: 0.9s; }
-        .donat-card:nth-child(5) ul { animation-delay: 0.10s; }
-        .donat-card:nth-child(5) .donat-btn { animation-delay: 0.10s; }
-
-        .site-footer {
-            margin-top: 4rem;
-            padding: 3rem 1rem;
-            background: #12131a;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
+        
+        /* Частицы */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
         }
-
-        .site-footer p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            opacity: 0.8;
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00ffff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 10s infinite;
+            box-shadow: 0 0 10px #00ffff;
         }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--accent-1);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-3);
-            text-decoration: underline;
-        }
-
-        ::selection {
-            background: rgba(255, 126, 179, 0.25);
-            color: #fff;
-        }
-
-        a:focus-visible,
-        button:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--ring), 0 0 0 6px rgba(255, 107, 107, 0.2);
-            border-radius: 12px;
-        }
-
-        a {
-            transition: color 0.25s ease, opacity 0.25s ease, text-shadow 0.25s ease;
-        }
-
-        .filters .search-btn {
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-            color: #111;
-            font-weight: 700;
-        }
-
-        .filters .search-btn:hover {
-            filter: brightness(1.08);
-        }
-
-        .filters .clear-btn {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #0f1119;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--accent-1), var(--accent-3));
-            border-radius: 999px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            filter: brightness(1.1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 1200px) {
-            .ranAnim {
-                grid-template-columns: repeat(3, 1fr);
-                max-width: 100%;
-                padding: 1rem;
+        
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) translateX(0);
             }
-        }
-
-        @media (max-width: 900px) {
-            .ranAnim {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 100%;
-                padding: 1rem;
+            10% {
+                opacity: 1;
             }
-        }
-
-        @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
+            90% {
+                opacity: 1;
             }
-
-            .content h1 {
-                font-size: 2.2rem;
-            }
-
-            .content p {
-                font-size: 1rem;
-            }
-
-            .slider-btn {
-                width: 42px;
-                height: 42px;
-                font-size: 1rem;
-                border-radius: 10px;
-            }
-
-            .slider-btn-prev {
-                left: -15px;
-            }
-
-            .slider-btn-next {
-                right: -15px;
-            }
-
-            .ranAnim {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 100%;
-                padding: 0.5rem;
-            }
-
-            .ranAnim .anime-card-pop img {
-                height: 180px;
-            }
-
-            .ranAnim .anime-card-pop .title {
-                font-size: 1rem;
-            }
-
-            .ranAnim .anime-card-pop .meta {
-                font-size: 0.85rem;
-            }
-
-            .custom-dropdown {
-                min-width: 100%;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px);
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="../База/home.html">Anitime</a>
+    <div class="particles" id="particles"></div>
+    
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button onclick="appendToDisplay('/')" class="operator">÷</button>
+            <button onclick="appendToDisplay('*')" class="operator">×</button>
+            <button onclick="deleteLast()">←</button>
+            
+            <button onclick="appendToDisplay('7')">7</button>
+            <button onclick="appendToDisplay('8')">8</button>
+            <button onclick="appendToDisplay('9')">9</button>
+            <button onclick="appendToDisplay('-')" class="operator">-</button>
+            
+            <button onclick="appendToDisplay('4')">4</button>
+            <button onclick="appendToDisplay('5')">5</button>
+            <button onclick="appendToDisplay('6')">6</button>
+            <button onclick="appendToDisplay('+')" class="operator">+</button>
+            
+            <button onclick="appendToDisplay('1')">1</button>
+            <button onclick="appendToDisplay('2')">2</button>
+            <button onclick="appendToDisplay('3')">3</button>
+            <button onclick="appendToDisplay('.')">.</button>
+            
+            <button onclick="appendToDisplay('0')" class="zero">0</button>
+            <button onclick="calculate()" class="equals">=</button>
         </div>
-        <div class="account">
-            <a href="../вход/Вход.html">Вход</a>
-            <a href="../вход/регистрация.html">Регистрация</a>
-            <a href="../profile/profile.html" id="profile-link" style="display: none;">Профиль</a>
-        </div>
-    </header>
-
-    <nav class="nav-menu">
-        <div class="account">
-            <a href="../nav-menu/top100.html">Топ 100</a>
-            <a href="../nav-menu/oponing.html">Онгоинги</a>
-            <a href="../nav-menu/anons.html">Анонсы</a>
-            <a href="#random">Случайное</a>
-        </div>
-    </nav>
-
-    <main>
-        <section class="content">
-            <h1>Добро пожаловать на Anitime</h1>
-            <p>Откройте для себя мир аниме с нашей обширной библиотекой и эксклюзивным контентом!</p>
-        </section>
-
-        <section class="popular-section">
-            <h1>Популярные аниме</h1>
-            <div class="carousel" data-carousel tabindex="0" aria-roledescription="carousel" aria-label="Популярные аниме">
-                <button class="slider-btn slider-btn-prev" data-prev aria-label="Предыдущие">←</button>
-                <div class="viewport" data-viewport>
-                    <div class="track" data-track>
-                        <a href="../anim-site/akspr.html" class="anime-card-pop-link">
-                            <article class="slide anime-card-pop">
-                                <div class="badge">Top</div>
-                                <img src="../img-anim/176417.jpg" alt="Аля иногда кокетничает со мной по-русски">
-                                <div class="info">
-                                    <h3 class="title">Аля иногда кокетничает со мной по-русски</h3>
-                                    <p class="meta">Романтика • Школа</p>
-                                </div>
-                            </article>
-                        </a>
-                        <a href="../anime/bloom.html" class="anime-card-pop-link">
-                            <article class="slide anime-card-pop">
-                                <div class="badge">New</div>
-                                <img src="../img-anim/bf.webp" alt="Благоухающий цветок расцветает с достоинством">
-                                <div class="info">
-                                    <h3 class="title">Благоухающий цветок расцветает с достоинством</h3>
-                                    <p class="meta">Экшен • Приключения</p>
-                                </div>
-                            </article>
-                        </a>
-                        <a href="../anime/spyfamily.html" class="anime-card-pop-link">
-                            <article class="slide anime-card-pop">
-                                <img src="../img-anim/SH.webp" alt="Семья шпионов">
-                                <div class="info">
-                                    <h3 class="title">Семья шпионов</h3>
-                                    <p class="meta">Комедия • Боевик</p>
-                                </div>
-                            </article>
-                        </a>
-                        <a href="../anime/deathnote.html" class="anime-card-pop-link">
-                            <article class="slide anime-card-pop">
-                                <img src="../img-anim/TC.webp" alt="Тетрадь смерти">
-                                <div class="info">
-                                    <h3 class="title">Тетрадь смерти</h3>
-                                    <p class="meta">Драма • Детектив</p>
-                                </div>
-                            </article>
-                        </a>
-                        <a href="../anime/darling.html" class="anime-card-pop-link">
-                            <article class="slide anime-card-pop">
-                                <img src="../img-anim/mvf.webp" alt="Милый во Франксе">
-                                <div class="info">
-                                    <h3 class="title">Милый во Франксе</h3>
-                                    <p class="meta">Детектив • Драма</p>
-                                </div>
-                            </article>
-                        </a>
-                        <a href="../anime/koenokatachi.html" class="anime-card-pop-link">
-                            <article class="slide anime-card-pop">
-                                <img src="../img-anim/1920x.webp" alt="Форма голоса">
-                                <div class="info">
-                                    <h3 class="title">Форма голоса</h3>
-                                    <p class="meta">Драма • Мелодрама</p>
-                                </div>
-                            </article>
-                        </a>
-                    </div>
-                </div>
-                <button class="slider-btn slider-btn-next" data-next aria-label="Следующие">→</button>
-            </div>
-        </section>
-
-        <section class="new-anime">
-            <h2>Лучшие новинки аниме</h2>
-            <div class="filters">
-                <div class="custom-dropdown">
-                    <button class="dropdown-button" onclick="toggleDropdown(this)">Приключения</button>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Приключения</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Романтика</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Комедия</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Школа</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Гарем</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Спорт</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Магия</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'genre')">Детектив</a>
-                    </div>
-                </div>
-                <div class="custom-dropdown">
-                    <button class="dropdown-button" onclick="toggleDropdown(this)">AniLibria</button>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'source')">AniLibria</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'source')">AniDub</a>
-                        <a href="#" class="dropdown-item" onclick="selectOption(this, 'source')">Dream Cast</a>
-                    </div>
-                </div>
-                <button class="search-btn">Поиск</button>
-                <button class="clear-btn">Очистить</button>
-            </div>
-            <div class="nastrsmotvse">
-                <a href="#random" class="smotvse">Смотреть все</a>
-            </div>
-            <div class="ranAnim" id="random">
-                <a href="../anime/yahari.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/fkv.jpg" alt="Эта фарфоровая кукла влюбилась">
-                        <div class="info">
-                            <h3 class="title">Эта фарфоровая кукла влюбилась</h3>
-                            <p class="meta">Романтика • Школа</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/jojo.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/jo.webp" alt="Невероятное приключение ДжоДжо">
-                        <div class="info">
-                            <h3 class="title">Невероятное приключение ДжоДжо</h3>
-                            <p class="meta">Фэнтези • Экшен</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/kiminonawa.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/ti.webp" alt="Твоё имя">
-                        <div class="info">
-                            <h3 class="title">Твоё имя</h3>
-                            <p class="meta">Драма • Романтика</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/kaiju.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/kn8.webp" alt="Кайдзю номер восемь">
-                        <div class="info">
-                            <h3 class="title">Кайдзю номер восемь</h3>
-                            <p class="meta">Фэнтези • Экшен</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/grandocean.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/OO.webp" alt="Необъятный океан">
-                        <div class="info">
-                            <h3 class="title">Необъятный океан</h3>
-                            <p class="meta">Комедия • Сэйнэн</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/nightcats.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/NNK.webp" alt="Ночь живых кошек">
-                        <div class="info">
-                            <h3 class="title">Ночь живых кошек</h3>
-                            <p class="meta">Ужасы • Экшен</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/koenokatachi.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/1920x.webp" alt="Форма голоса">
-                        <div class="info">
-                            <h3 class="title">Форма голоса</h3>
-                            <p class="meta">Драма • Мелодрама</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/alya.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/176417.jpg" alt="Аля иногда кокетничает со мной по-русски">
-                        <div class="info">
-                            <h3 class="title">Аля иногда кокетничает со мной по-русски</h3>
-                            <p class="meta">Романтика • Школа</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/yamada999.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/999.jpg" alt="Моя любовь к Ямаде 999 уровня">
-                        <div class="info">
-                            <h3 class="title">Моя любовь к Ямаде 999 уровня</h3>
-                            <p class="meta">Романтика</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/bloom.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/bf.webp" alt="Благоухающий цветок расцветает с достоинством">
-                        <div class="info">
-                            <h3 class="title">Благоухающий цветок расцветает с достоинством</h3>
-                            <p class="meta">Романтика • Школа</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/onepiece.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/OP.webp" alt="Ван-Пис">
-                        <div class="info">
-                            <h3 class="title">Ван-Пис</h3>
-                            <p class="meta">Боевик • Фэнтези</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/mushokutensei.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/RB.webp" alt="Реинкарнация безработного">
-                        <div class="info">
-                            <h3 class="title">Реинкарнация безработного</h3>
-                            <p class="meta">Фэнтези • Комедия</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/tokyoghoul.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/TG.webp" alt="Токийский гуль">
-                        <div class="info">
-                            <h3 class="title">Токийский гуль</h3>
-                            <p class="meta">Ужасы • Экшен</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/playmylife.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/LP.jpeg" alt="Сыграем: Моя жизнь, полная квестов">
-                        <div class="info">
-                            <h3 class="title">Сыграем: Моя жизнь, полная квестов</h3>
-                            <p class="meta">Романтика • Школа</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/dandadan.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/dan.webp" alt="Дандадан">
-                        <div class="info">
-                            <h3 class="title">Дандадан</h3>
-                            <p class="meta">Фэнтези • Комедия</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/oshinoko.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/Dit.webp" alt="Звёздное дитя">
-                        <div class="info">
-                            <h3 class="title">Звёздное дитя</h3>
-                            <p class="meta">Фэнтези • Драма</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/bunnygirl.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/zaik.webp" alt="Этот глупый свин не понимает мечту девочки-зайки">
-                        <div class="info">
-                            <h3 class="title">Этот глупый свин не понимает мечту девочки-зайки</h3>
-                            <p class="meta">Фэнтези • Комедия</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/attackontitan.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/AT.webp" alt="Атака титанов">
-                        <div class="info">
-                            <h3 class="title">Атака титанов</h3>
-                            <p class="meta">Боевик • Драма</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/chainsawman.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/CB.webp" alt="Человек-бензопила">
-                        <div class="info">
-                            <h3 class="title">Человек-бензопила</h3>
-                            <p class="meta">Фэнтези • Ужасы</p>
-                        </div>
-                    </article>
-                </a>
-                <a href="../anime/cyberpunk.html" class="anime-card-pop-link">
-                    <article class="anime-card-pop">
-                        <img src="../img-anim/CP.webp" alt="Киберпанк: Бегущие по краю">
-                        <div class="info">
-                            <h3 class="title">Киберпанк: Бегущие по краю</h3>
-                            <p class="meta">Экшен • Фантастика</p>
-                        </div>
-                    </article>
-                </a>
-            </div>
-        </section>
-
-        <section class="donat">
-            <h2>Поддержите Anitime</h2>
-            <div class="donat-container">
-                <div class="donat-card">
-                    <h3>Базовый</h3>
-                    <p class="price">299 ₽</p>
-                    <p class="duration">30 дней</p>
-                    <ul>
-                        <li>Доступ к библиотеке аниме</li>
-                        <li>Без рекламы</li>
-                        <li>1080p качество видео</li>
-                    </ul>
-                    <button class="donat-btn">Выбрать</button>
-                </div>
-                <div class="donat-card">
-                    <h3>Стандарт</h3>
-                    <p class="price">499 ₽</p>
-                    <p class="duration">30 дней</p>
-                    <ul>
-                        <li>Все функции Базового</li>
-                        <li>Эксклюзивные анонсы</li>
-                        <li>Скачивание эпизодов</li>
-                    </ul>
-                    <button class="donat-btn">Выбрать</button>
-                </div>
-                <div class="donat-card">
-                    <h3>Премиум</h3>
-                    <p class="price">799 ₽</p>
-                    <p class="duration">30 дней</p>
-                    <ul>
-                        <li>Все функции Стандарт</li>
-                        <li>4K качество видео</li>
-                        <li>Ранний доступ к новинкам</li>
-                    </ul>
-                    <button class="donat-btn">Выбрать</button>
-                </div>
-                <div class="donat-card">
-                    <h3>Годовой Премиум</h3>
-                    <p class="price">7999 ₽</p>
-                    <p class="duration">365 дней</p>
-                    <ul>
-                        <li>Все функции Премиум</li>
-                        <li>Экономия 20%</li>
-                        <li>Эксклюзивный значок профиля</li>
-                    </ul>
-                    <button class="donat-btn">Выбрать</button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-content">
-            <p>© 2025 Anitime — Все права защищены</p>
-            <div class="footer-links">
-                <a href="../подвал/контакты.html">Контакты</a>
-                <a href="../подвал/проект.html">О проекте</a>
-                <a href="../подвал/конф.html">Политика конфиденциальности</a>
-            </div>
-        </div>
-    </footer>
-
+    </div>
+    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            class Carousel {
-                constructor(root) {
-                    this.root = root;
-                    this.track = root.querySelector('[data-track]');
-                    this.slides = Array.from(this.track.children);
-                    this.prevBtn = root.querySelector('[data-prev]');
-                    this.nextBtn = root.querySelector('[data-next]');
-                    this.index = 0;
-                    this.autoplayMs = 5000;
-                    this.slidesToShow = 1;
-                    this.slideWidth = 0;
-                    this.autoplayId = null;
-                    this.pointerStartX = 0;
-                    this.bind();
-                    this.measure();
-                    this.start();
-                }
-                bind() {
-                    this.prevBtn?.addEventListener('click', () => this.move(-1));
-                    this.nextBtn?.addEventListener('click', () => this.move(1));
-                    this.root.addEventListener('mouseenter', () => this.stop());
-                    this.root.addEventListener('mouseleave', () => this.start());
-                    window.addEventListener('resize', () => this.onResize());
-                    this.root.addEventListener('keydown', (e) => {
-                        if (e.key === 'ArrowLeft') this.move(-1);
-                        if (e.key === 'ArrowRight') this.move(1);
-                    });
-                    this.root.addEventListener('touchstart', (e) => {
-                        this.pointerStartX = e.touches[0].clientX;
-                    }, { passive: true });
-                    this.root.addEventListener('touchend', (e) => {
-                        const dx = e.changedTouches[0].clientX - this.pointerStartX;
-                        if (dx < -50) this.move(1);
-                        if (dx > 50) this.move(-1);
-                    });
-                }
-                measure() {
-                    const w = window.innerWidth;
-                    this.slidesToShow = w > 1024 ? 4 : w > 740 ? 3 : 2;
-                    const gap = parseFloat(getComputedStyle(this.track).columnGap || getComputedStyle(this.track).gap) || 16;
-                    const containerWidth = this.root.querySelector('[data-viewport]').clientWidth;
-                    this.slideWidth = (containerWidth - gap * (this.slidesToShow - 1)) / this.slidesToShow;
-                    this.slides.forEach(s => { s.style.minWidth = `${this.slideWidth}px`; });
-                    this.clamp();
-                    this.apply();
-                }
-                clamp() {
-                    const maxIndex = Math.max(0, this.slides.length - this.slidesToShow);
-                    this.index = Math.min(Math.max(this.index, 0), maxIndex);
-                }
-                apply() {
-                    const gap = this.gap();
-                    this.track.style.transform = `translateX(-${this.index * (this.slideWidth + gap)}px)`;
-                }
-                gap() {
-                    const cs = getComputedStyle(this.track);
-                    return parseFloat(cs.columnGap || cs.gap) || 16;
-                }
-                move(dir) {
-                    this.index += dir;
-                    this.clamp();
-                    this.apply();
-                }
-                start() {
-                    this.stop();
-                    this.autoplayId = setInterval(() => this.move(1), this.autoplayMs);
-                }
-                stop() {
-                    if (this.autoplayId) {
-                        clearInterval(this.autoplayId);
-                        this.autoplayId = null;
-                    }
-                }
-                onResize() {
-                    this.measure();
-                }
-            }
-            const carousels = document.querySelectorAll('[data-carousel]');
-            carousels.forEach(el => new Carousel(el));
-        });
-
-        function toggleDropdown(button) {
-            const dropdownMenu = button.nextElementSibling;
-            const isOpen = dropdownMenu.classList.contains('show');
-            document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.remove('show'));
-            if (!isOpen) dropdownMenu.classList.add('show');
+        let display = document.getElementById('display');
+        let currentValue = '0';
+        let shouldResetDisplay = false;
+        
+        function updateDisplay() {
+            display.textContent = currentValue;
         }
-
-        function selectOption(item, type) {
-            const button = item.closest('.custom-dropdown').querySelector('.dropdown-button');
-            button.textContent = item.textContent;
-            button.appendChild(document.createElement('span')).textContent = ' ';
-            item.closest('.dropdown-menu').classList.remove('show');
+        
+        function clearDisplay() {
+            currentValue = '0';
+            shouldResetDisplay = false;
+            updateDisplay();
         }
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.custom-dropdown')) {
-                document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.remove('show'));
+        
+        function appendToDisplay(value) {
+            if (shouldResetDisplay) {
+                currentValue = '0';
+                shouldResetDisplay = false;
             }
-        });
-
-        function checkLoginStatus() {
-            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-            const profileLink = document.getElementById('profile-link');
-            const loginLink = document.querySelector('a[href="../вход/Вход.html"]');
-            const registerLink = document.querySelector('a[href="../вход/регистрация.html"]');
             
-            if (isLoggedIn) {
-                if (profileLink) profileLink.style.display = 'block';
-                if (loginLink) loginLink.style.display = 'none';
-                if (registerLink) registerLink.style.display = 'none';
+            if (currentValue === '0' && value !== '.') {
+                currentValue = value;
+            } else if (value === '.' && currentValue.includes('.')) {
+                return;
             } else {
-                if (profileLink) profileLink.style.display = 'none';
-                if (loginLink) loginLink.style.display = 'block';
-                if (registerLink) registerLink.style.display = 'block';
+                currentValue += value;
+            }
+            
+            updateDisplay();
+        }
+        
+        function deleteLast() {
+            if (currentValue.length > 1) {
+                currentValue = currentValue.slice(0, -1);
+            } else {
+                currentValue = '0';
+            }
+            updateDisplay();
+        }
+        
+        function calculate() {
+            try {
+                currentValue = eval(currentValue).toString();
+                shouldResetDisplay = true;
+                updateDisplay();
+            } catch (error) {
+                currentValue = 'ОШИБКА';
+                shouldResetDisplay = true;
+                updateDisplay();
             }
         }
-
-        document.addEventListener('DOMContentLoaded', checkLoginStatus);
-
-        function performSearch() {
-            const genreDropdown = document.querySelector('.custom-dropdown:first-of-type .dropdown-button');
-            const sourceDropdown = document.querySelector('.custom-dropdown:last-of-type .dropdown-button');
-            const selectedGenre = genreDropdown.textContent.trim();
-            const selectedSource = sourceDropdown.textContent.trim();
+        
+        // Создание частиц
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 10 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            document.getElementById('particles').appendChild(particle);
             
-            console.log('Поиск по жанру:', selectedGenre, 'Источник:', selectedSource);
-            alert(`Поиск: ${selectedGenre} из ${selectedSource}`);
+            setTimeout(() => {
+                particle.remove();
+            }, 20000);
         }
-
-        function clearFilters() {
-            const genreDropdown = document.querySelector('.custom-dropdown:first-of-type .dropdown-button');
-            const sourceDropdown = document.querySelector('.custom-dropdown:last-of-type .dropdown-button');
-            
-            genreDropdown.textContent = 'Приключения';
-            sourceDropdown.textContent = 'AniLibria';
-            
-            console.log('Фильтры очищены');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchBtn = document.querySelector('.search-btn');
-            const clearBtn = document.querySelector('.clear-btn');
-            
-            if (searchBtn) {
-                searchBtn.addEventListener('click', performSearch);
-            }
-            if (clearBtn) {
-                clearBtn.addEventListener('click', clearFilters);
+        
+        // Создавать частицы каждые 500мс
+        setInterval(createParticle, 500);
+        
+        // Поддержка клавиатуры
+        document.addEventListener('keydown', (e) => {
+            if (e.key >= '0' && e.key <= '9') {
+                appendToDisplay(e.key);
+            } else if (e.key === '.') {
+                appendToDisplay('.');
+            } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+                appendToDisplay(e.key);
+            } else if (e.key === 'Enter' || e.key === '=') {
+                calculate();
+            } else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') {
+                clearDisplay();
+            } else if (e.key === 'Backspace') {
+                deleteLast();
             }
         });
     </script>
