@@ -1,386 +1,149 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор 2084</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #000428 0%, #004e92 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        /* Анимированный фон */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: 
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 10px,
-                    rgba(0, 255, 255, 0.03) 10px,
-                    rgba(0, 255, 255, 0.03) 20px
-                );
-            animation: slide 20s linear infinite;
-        }
-        
-        @keyframes slide {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
-        }
-        
-        .calculator {
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 30px;
-            padding: 30px;
-            box-shadow: 
-                0 0 50px rgba(0, 255, 255, 0.5),
-                inset 0 0 30px rgba(0, 255, 255, 0.1);
-            border: 2px solid rgba(0, 255, 255, 0.3);
-            position: relative;
-            z-index: 10;
-            backdrop-filter: blur(10px);
-        }
-        
-        .display {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 50, 100, 0.5));
-            border: 2px solid rgba(0, 255, 255, 0.5);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: right;
-            font-size: 2.5em;
-            color: #00ffff;
-            font-weight: 900;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 
-                inset 0 0 20px rgba(0, 255, 255, 0.3),
-                0 0 30px rgba(0, 255, 255, 0.2);
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-        }
-        
-        .display::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(0, 255, 255, 0.1) 50%,
-                transparent 70%
-            );
-            animation: scan 3s linear infinite;
-        }
-        
-        @keyframes scan {
-            0% { transform: translateX(-100%) translateY(-100%); }
-            100% { transform: translateX(100%) translateY(100%); }
-        }
-        
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-        }
-        
-        button {
-            background: linear-gradient(135deg, rgba(0, 50, 100, 0.7), rgba(0, 20, 50, 0.9));
-            border: 2px solid rgba(0, 255, 255, 0.4);
-            border-radius: 15px;
-            color: #00ffff;
-            font-size: 1.5em;
-            font-weight: 700;
-            padding: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            font-family: 'Orbitron', monospace;
-        }
-        
-        button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.5) 0%, transparent 70%);
-            transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
-        }
-        
-        button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 10px 30px rgba(0, 255, 255, 0.5),
-                0 0 20px rgba(0, 255, 255, 0.3);
-            border-color: rgba(0, 255, 255, 0.8);
-        }
-        
-        button:active {
-            transform: translateY(0);
-            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
-        }
-        
-        .operator {
-            background: linear-gradient(135deg, rgba(255, 100, 0, 0.7), rgba(150, 50, 0, 0.9));
-            border-color: rgba(255, 150, 0, 0.5);
-            color: #ffaa00;
-        }
-        
-        .operator:hover {
-            box-shadow: 
-                0 10px 30px rgba(255, 150, 0, 0.5),
-                0 0 20px rgba(255, 150, 0, 0.3);
-            border-color: rgba(255, 150, 0, 0.8);
-        }
-        
-        .equals {
-            background: linear-gradient(135deg, rgba(0, 255, 100, 0.7), rgba(0, 150, 50, 0.9));
-            border-color: rgba(0, 255, 100, 0.5);
-            color: #00ff64;
-            grid-column: span 2;
-        }
-        
-        .equals:hover {
-            box-shadow: 
-                0 10px 30px rgba(0, 255, 100, 0.5),
-                0 0 20px rgba(0, 255, 100, 0.3);
-            border-color: rgba(0, 255, 100, 0.8);
-        }
-        
-        .clear {
-            background: linear-gradient(135deg, rgba(255, 0, 100, 0.7), rgba(150, 0, 50, 0.9));
-            border-color: rgba(255, 0, 100, 0.5);
-            color: #ff0064;
-        }
-        
-        .clear:hover {
-            box-shadow: 
-                0 10px 30px rgba(255, 0, 100, 0.5),
-                0 0 20px rgba(255, 0, 100, 0.3);
-            border-color: rgba(255, 0, 100, 0.8);
-        }
-        
-        .zero {
-            grid-column: span 2;
-        }
-        
-        /* Голографический эффект */
-        .calculator::after {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(
-                45deg,
-                #00ffff,
-                #ff00ff,
-                #00ff00,
-                #ffff00,
-                #00ffff
-            );
-            border-radius: 30px;
-            opacity: 0;
-            z-index: -1;
-            animation: hologram 3s linear infinite;
-        }
-        
-        @keyframes hologram {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 0.5; }
-        }
-        
-        /* Частицы */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #00ffff;
-            border-radius: 50%;
-            opacity: 0;
-            animation: float 10s infinite;
-            box-shadow: 0 0 10px #00ffff;
-        }
-        
-        @keyframes float {
-            0% {
-                opacity: 0;
-                transform: translateY(100vh) translateX(0);
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100vh) translateX(100px);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Линейный график — Chart.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100px;
+    }
+
+    button {
+      background: #36a2eb;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #1e88e5;
+    }
+
+    .chart-container {
+      position: relative;
+      width: 90vw;
+      max-width: 1000px;
+      height: 70vh;
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 600px) {
+      input {
+        width: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
-    
-    <div class="calculator">
-        <div class="display" id="display">0</div>
-        <div class="buttons">
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button onclick="appendToDisplay('/')" class="operator">÷</button>
-            <button onclick="appendToDisplay('*')" class="operator">×</button>
-            <button onclick="deleteLast()">←</button>
-            
-            <button onclick="appendToDisplay('7')">7</button>
-            <button onclick="appendToDisplay('8')">8</button>
-            <button onclick="appendToDisplay('9')">9</button>
-            <button onclick="appendToDisplay('-')" class="operator">-</button>
-            
-            <button onclick="appendToDisplay('4')">4</button>
-            <button onclick="appendToDisplay('5')">5</button>
-            <button onclick="appendToDisplay('6')">6</button>
-            <button onclick="appendToDisplay('+')" class="operator">+</button>
-            
-            <button onclick="appendToDisplay('1')">1</button>
-            <button onclick="appendToDisplay('2')">2</button>
-            <button onclick="appendToDisplay('3')">3</button>
-            <button onclick="appendToDisplay('.')">.</button>
-            
-            <button onclick="appendToDisplay('0')" class="zero">0</button>
-            <button onclick="calculate()" class="equals">=</button>
-        </div>
-    </div>
-    
-    <script>
-        let display = document.getElementById('display');
-        let currentValue = '0';
-        let shouldResetDisplay = false;
-        
-        function updateDisplay() {
-            display.textContent = currentValue;
+
+  <h2>Линейный график (Line Chart)</h2>
+
+  <form id="dataForm" onsubmit="addPoint(event)">
+    <input type="number" id="xValue" placeholder="X" required>
+    <input type="number" id="yValue" placeholder="Y" required>
+    <button type="submit">Добавить</button>
+    <button type="button" onclick="clearChart()" style="background:#e74c3c;">Очистить</button>
+  </form>
+
+  <div class="chart-container">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    const data = {
+      labels: [],
+      datasets: [{
+        label: 'Мои данные',
+        data: [],
+        borderColor: '#36a2eb',
+        backgroundColor: '#36a2eb40',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.3, // сглаживание линии
+        pointRadius: 5,
+        pointBackgroundColor: '#1e88e5'
+      }]
+    };
+
+    const myChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            title: { display: true, text: 'X' }
+          },
+          y: {
+            title: { display: true, text: 'Y' }
+          }
+        },
+        plugins: {
+          legend: { display: true },
+          tooltip: { enabled: true }
         }
-        
-        function clearDisplay() {
-            currentValue = '0';
-            shouldResetDisplay = false;
-            updateDisplay();
-        }
-        
-        function appendToDisplay(value) {
-            if (shouldResetDisplay) {
-                currentValue = '0';
-                shouldResetDisplay = false;
-            }
-            
-            if (currentValue === '0' && value !== '.') {
-                currentValue = value;
-            } else if (value === '.' && currentValue.includes('.')) {
-                return;
-            } else {
-                currentValue += value;
-            }
-            
-            updateDisplay();
-        }
-        
-        function deleteLast() {
-            if (currentValue.length > 1) {
-                currentValue = currentValue.slice(0, -1);
-            } else {
-                currentValue = '0';
-            }
-            updateDisplay();
-        }
-        
-        function calculate() {
-            try {
-                currentValue = eval(currentValue).toString();
-                shouldResetDisplay = true;
-                updateDisplay();
-            } catch (error) {
-                currentValue = 'ОШИБКА';
-                shouldResetDisplay = true;
-                updateDisplay();
-            }
-        }
-        
-        // Создание частиц
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            document.getElementById('particles').appendChild(particle);
-            
-            setTimeout(() => {
-                particle.remove();
-            }, 20000);
-        }
-        
-        // Создавать частицы каждые 500мс
-        setInterval(createParticle, 500);
-        
-        // Поддержка клавиатуры
-        document.addEventListener('keydown', (e) => {
-            if (e.key >= '0' && e.key <= '9') {
-                appendToDisplay(e.key);
-            } else if (e.key === '.') {
-                appendToDisplay('.');
-            } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
-                appendToDisplay(e.key);
-            } else if (e.key === 'Enter' || e.key === '=') {
-                calculate();
-            } else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') {
-                clearDisplay();
-            } else if (e.key === 'Backspace') {
-                deleteLast();
-            }
-        });
-    </script>
+      }
+    });
+
+    // Добавить точку
+    function addPoint(event) {
+      event.preventDefault();
+      const x = document.getElementById('xValue').value;
+      const y = parseFloat(document.getElementById('yValue').value);
+
+      if (x !== '' && !isNaN(y)) {
+        myChart.data.labels.push(x);
+        myChart.data.datasets[0].data.push(y);
+        myChart.update();
+      }
+
+      document.getElementById('xValue').value = '';
+      document.getElementById('yValue').value = '';
+    }
+
+    // Очистить график
+    function clearChart() {
+      myChart.data.labels = [];
+      myChart.data.datasets[0].data = [];
+      myChart.update();
+    }
+  </script>
+
 </body>
 </html>

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anitime</title>
     <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/unified.css">
+    <script src="../scripts/animations.js" defer></script>
     <style>
         :root {
             --bg-start: #0c0d12;
@@ -163,12 +165,13 @@
         }
 
         .carousel .slide {
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            background: #181a24;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             position: relative;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .carousel .slide:hover {
@@ -181,8 +184,10 @@
             height: 365px;
             object-fit: cover;
             display: block;
-            border-radius: 16px;
+            transition: transform 0.3s ease;
         }
+
+        .carousel .anime-card-pop:hover img { transform: scale(1.05); }
 
         .carousel .slide .info {
             position: absolute;
@@ -440,12 +445,13 @@
         }
 
         .ranAnim .anime-card-pop {
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
-            background: #181a24;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             position: relative;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .ranAnim .anime-card-pop-link {
@@ -464,8 +470,10 @@
             height: 345px;
             object-fit: cover;
             display: block;
-            border-radius: 16px;
+            transition: transform 0.3s ease;
         }
+
+        .ranAnim .anime-card-pop-link:hover .anime-card-pop img { transform: scale(1.05); }
 
         .ranAnim .anime-card-pop .info {
             position: absolute;
@@ -473,7 +481,7 @@
             left: 0;
             right: 0;
             padding: 1rem;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
+            background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.85) 90%);
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
@@ -818,7 +826,7 @@
         </div>
         <div class="account">
             <a href="../вход/Вход.html">Вход</a>
-            <a href="../вход/регистрация.html">Регистрация</a>
+            <a href="../вход/регестрация.html">Регистрация</a>
             <a href="../profile/profile.html" id="profile-link" style="display: none;">Профиль</a>
         </div>
     </header>

@@ -1,0 +1,246 @@
+/* Unified theme and animations */
+
+:root {
+    --bg-start: #0c0d12;
+    --bg-end: #1a1b24;
+    --surface: rgba(255, 255, 255, 0.06);
+    --surface-2: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.12);
+    --text: #f5f5f5;
+    --muted: rgba(245, 245, 245, 0.85);
+    --brand-1: #ff7eb3;
+    --brand-2: #ff758c;
+    --brand-3: #ff6b6b;
+    --shadow-strong: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+html, body {
+    min-height: 100vh;
+    font-family: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 17, 25, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.logo a {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-2), var(--brand-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+.logo a:hover {
+    text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+    transform: scale(1.04);
+}
+
+.account {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.account a {
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    color: #fff;
+    text-decoration: none;
+    background: var(--surface-2);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.account a:hover {
+    background: rgba(255, 107, 107, 0.22);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 107, 107, 0.3);
+}
+
+/* Containers and cards */
+main {
+    max-width: 1280px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.content-card,
+.card,
+.comment-section,
+.anime-card-pop {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.content-card { padding: 2rem; }
+
+.anime-card-pop {
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.anime-card-pop:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(255, 107, 107, 0.22);
+    border-color: rgba(255, 126, 179, 0.32);
+}
+
+.anime-card-pop img { transition: transform 0.3s ease; }
+.anime-card-pop:hover img { transform: scale(1.05); }
+
+/* Typography */
+h1, h2, h3 {
+    line-height: 1.25;
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--brand-1), var(--brand-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.description { color: var(--muted); }
+
+/* Buttons */
+button, .btn {
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(145deg, var(--brand-1), var(--brand-3));
+    color: #fff;
+    border: 1px solid rgba(255, 126, 179, 0.4);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 126, 179, 0.3);
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(145deg, var(--brand-3), var(--brand-1));
+}
+
+/* Inputs */
+input[type="text"], input[type="email"], input[type="password"], select, textarea {
+    padding: 0.8rem 1.1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--surface-2);
+    color: var(--text);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--brand-3);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55);
+}
+
+/* Footer */
+.site-footer {
+    margin-top: 4rem;
+    padding: 3rem 1rem;
+    background: #12131a;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.site-footer .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.4rem;
+}
+
+.site-footer .footer-links a {
+    color: var(--brand-1);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+}
+
+.site-footer .footer-links a:hover {
+    color: var(--brand-3);
+    text-decoration: underline;
+}
+
+/* Accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 6px rgba(255, 107, 107, 0.2);
+    border-radius: var(--radius-md);
+}
+
+/* Animations */
+.fade-in { animation: fadeIn 0.6s ease both; }
+.slide-up { animation: slideUp 0.6s ease both; }
+.zoom-in { animation: zoomIn 0.5s ease both; }
+
+/* Progressive appear for common blocks without touching HTML */
+main h1 { animation: slideUp 0.6s ease both; }
+.content-card, .comment-section { animation: fadeIn 0.6s ease both; }
+.anime-card-pop { animation: slideUp 0.6s ease both; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+}
+
+
