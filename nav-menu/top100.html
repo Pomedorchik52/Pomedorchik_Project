@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ТОП 100</title>
+    <title>ТОП 100 — Anitime</title>
     <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -19,7 +20,6 @@
             color: #f5f5f5;
             line-height: 1.6;
         }
-        /* HEADER */
         header {
             position: sticky;
             top: 0;
@@ -68,7 +68,6 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
         }
-        /* MAIN CONTENT */
         main {
             max-width: 1400px;
             margin: 0 auto;
@@ -80,7 +79,7 @@
         main h1 {
             text-align: center;
             font-size: 3rem;
-            font-weight: 700Algorithms;
+            font-weight: 700;
             background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
             -webkit-background-clip: text;
             background-clip: text;
@@ -98,14 +97,21 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            height: 350px; /* Фиксированная высота карточки */
+            aspect-ratio: 2 / 3;
+            min-height: 280px;
         }
         .anime-card-pop:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 32px rgba(255, 107, 107, 0.2);
             border-color: rgba(255, 126, 179, 0.3);
         }
-        .anime-card-pop .img-wrapper {
+        .anime-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+        .img-wrapper {
             position: relative;
             width: 100%;
             height: 100%;
@@ -119,7 +125,25 @@
         .anime-card-pop:hover img {
             transform: scale(1.05);
         }
-        .anime-card-pop .info {
+        .rank-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8ba7);
+            color: white;
+            font-weight: 800;
+            font-size: 0.9rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+            z-index: 2;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .info {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -128,13 +152,13 @@
             background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.85) 60%);
             color: #fff;
         }
-        .anime-card-pop .title {
+        .title {
             font-size: 1.3rem;
             font-weight: 700;
             margin-bottom: 0.3rem;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
-        .anime-card-pop .meta {
+        .meta {
             font-size: 0.9rem;
             opacity: 0.9;
             background: linear-gradient(90deg, #ff7eb3, #ff758c);
@@ -143,7 +167,6 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 1px 2px rgba(0,0,0,0.6);
         }
-        /* FOOTER */
         .site-footer {
             margin-top: 4rem;
             padding: 3rem 1rem;
@@ -172,27 +195,26 @@
             color: #ff6b6b;
             text-decoration: underline;
         }
-        /* RESPONSIVE */
-        @media (max-width: 1200px) {
-            main { grid-template-columns: repeat(4, 1fr); }
+            html { scroll-behavior: auto; } /* отключаем стандартный smooth */
+            section { height: 100vh; padding: 20px; }
+        .scroll-container {
+            width: 350px;
+            height: 200px;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
         }
-        @media (max-width: 900px) {
-            main { grid-template-columns: repeat(3, 1fr); }
-        }
+        @media (max-width: 1200px) { main { grid-template-columns: repeat(4, 1fr); } }
+        @media (max-width: 900px) { main { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 600px) {
             header { flex-direction: column; gap: 1rem; }
             .logo a { font-size: 1.8rem; }
             main h1 { font-size: 2.2rem; }
             main { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-            .anime-card-pop { height: 280px; }
-            .anime-card-pop .title { font-size: 1.1rem; }
+            .anime-card-pop { min-height: 240px; }
+            .title { font-size: 1.1rem; }
         }
-        @media (max-width: 400px) {
-            main { grid-template-columns: 1fr; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
-        }
+        @media (max-width: 400px) { main { grid-template-columns: 1fr; } }
+        @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
     </style>
 </head>
 <body>
@@ -208,858 +230,1273 @@
 
     <main>
         <h1>ТОП 100</h1>
+        <!-- #1 -->
+<div class="anime-card-pop">
+    <a href="/anime/black-clover.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/bc.webp" alt="Черный клевер" loading="lazy">
+            <div class="info">
+                <h3 class="title">Черный клевер</h3>
+                <p class="meta">Шонэн • Приключения</p>
+            </div>
+        </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/bc.webp" alt="Naruto">
-                <div class="info">
-                    <h3 class="title">Черный клевер</h3>
-                    <p class="meta">Шонэн • Приключения</p>
-                </div>
+<!-- #2 -->
+<div class="anime-card-pop">
+    <a href="/anime/one-piece.html" class="anime-link">
+        <div class="img-wrapper">
+            <span class="rank-badge">#2</span>
+            <img src="../img-top100/OP.webp" alt="Ван-Пис" loading="lazy">
+            <div class="info">
+                <h3 class="title">Ван-Пис</h3>
+                <p class="meta">Шонэн • Приключения</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/OP.webp" alt="One Piece">
-                <div class="info">
-                    <h3 class="title">Ван-Пис</h3>
-                    <p class="meta">Шонэн • Приключения</p>
-                </div>
+<!-- #3 -->
+<div class="anime-card-pop">
+    <a href="/anime/naruto.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/Nar.webp" alt="Наруто" loading="lazy">
+            <div class="info">
+                <h3 class="title">Наруто</h3>
+                <p class="meta">Шонэн • Ниндзя</p>
             </div>
         </div>
+    </a>
+</div>
 
+<!-- #4 -->
+<div class="anime-card-pop">
+    <a href="/anime/attack-on-titan.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/AT.webp" alt="Атака титанов" loading="lazy">
+            <div class="info">
+                <h3 class="title">Атака титанов</h3>
+                <p class="meta">Сэйнэн • Экшен</p>
+            </div>
+        </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/DB.webp" alt="Dragon Ball Z">
-                <div class="info">
-                    <h3 class="title">Dragon Ball Z</h3>
-                    <p class="meta">Шонэн • Боевик</p>
-                </div>
+<!-- #5 -->
+<div class="anime-card-pop">
+    <a href="/anime/death-note.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/TCP.jpg" alt="Тетрадь смерти" loading="lazy">
+            <div class="info">
+                <h3 class="title">Тетрадь смерти</h3>
+                <p class="meta">Сэйнэн • Психология</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/MGA.webp" alt="My Hero Academia">
-                <div class="info">
-                    <h3 class="title">Моя геройская академия</h3>
-                    <p class="meta">Шонэн • Супергерои</p>
-                </div>
+<!-- #6 -->
+<div class="anime-card-pop">
+    <a href="/anime/steins-gate.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/BSH.webp" alt="Врата Штейна" loading="lazy">
+            <div class="info">
+                <h3 class="title">Врата Штейна</h3>
+                <p class="meta">Sci-Fi • Триллер</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/BCH.webp" alt="Bleach">
-                <div class="info">
-                    <h3 class="title">Блич</h3>
-                    <p class="meta">Шонэн • Боевик</p>
-                </div>
+<!-- #7 -->
+<div class="anime-card-pop">
+    <a href="/anime/fullmetal-alchemist.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/IA.webp" alt="Стальной алхимик" loading="lazy">
+            <div class="info">
+                <h3 class="title">Стальной алхимик: Братство</h3>
+                <p class="meta">Шонэн • Фэнтези</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/SM.webp" alt="Sailor Moon">
-                <div class="info">
-                    <h3 class="title">Красавица-воин Сейлор Мун</h3>
-                    <p class="meta">Шодзё • Махо-сёдзё</p>
-                </div>
+<!-- #8 -->
+<div class="anime-card-pop">
+    <a href="/anime/demon-slayer.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/KRD.webp" alt="Клинок, рассекающий демонов" loading="lazy">
+            <div class="info">
+                <h3 class="title">Клинок, рассекающий демонов</h3>
+                <p class="meta">Шонэн • Боевик</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/FB.webp" alt="Fruits Basket">
-                <div class="info">
-                    <h3 class="title">Фруктовая корзина</h3>
-                    <p class="meta">Шодзё • Романтика</p>
-                </div>
+<!-- #9 -->
+<div class="anime-card-pop">
+    <a href="/anime/jujutsu-kaisen.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MB.webp" alt="Магическая битва" loading="lazy">
+            <div class="info">
+                <h3 class="title">Магическая битва</h3>
+                <p class="meta">Шонэн • Сверхъестественное</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/BR.webp" alt="Berserk">
-                <div class="info">
-                    <h3 class="title">Берсерк</h3>
-                    <p class="meta">Сэйнэн • Тёмное фэнтези</p>
-                </div>
+<!-- #10 -->
+<div class="anime-card-pop">
+    <a href="/anime/chainsaw-man.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/CB.webp" alt="Человек-бензопила" loading="lazy">
+            <div class="info">
+                <h3 class="title">Человек-бензопила</h3>
+                <p class="meta">Сэйнэн • Боевик</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/k-on.webp" alt="K-On!">
-                <div class="info">
-                    <h3 class="title">Кэйон</h3>
-                    <p class="meta">Повседневность • Музыка</p>
-                </div>
+<!-- #11 -->
+<div class="anime-card-pop">
+    <a href="/anime/hunter-x-hunter.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/HXH.webp" alt="Охотник х Охотник" loading="lazy">
+            <div class="info">
+                <h3 class="title">Охотник х Охотник</h3>
+                <p class="meta">Шонэн • Приключения</p>
             </div>
         </div>
+    </a>
+</div>
 
-        <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/EVN.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Евангелион</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+<!-- #12 -->
+<div class="anime-card-pop">
+    <a href="/anime/evangelion.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/EVN.webp" alt="Евангелион" loading="lazy">
+            <div class="info">
+                <h3 class="title">Евангелион</h3>
+                <p class="meta">Меха • Психология</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/YP.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Унесённые призраками</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #13 -->
+<div class="anime-card-pop">
+    <a href="/anime/spirited-away.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/YP.webp" alt="Унесённые призраками" loading="lazy">
+            <div class="info">
+                <h3 class="title">Унесённые призраками</h3>
+                <p class="meta">Фэнтези • Приключения</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/KRD.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Клинок, рассекающий демонов</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #14 -->
+<div class="anime-card-pop">
+    <a href="/anime/your-name.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/ti.webp" alt="Твоё имя" loading="lazy">
+            <div class="info">
+                <h3 class="title">Твоё имя</h3>
+                <p class="meta">Романтика • Драма</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/MB.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Могическая битва</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #15 -->
+<div class="anime-card-pop">
+    <a href="/anime/cowboy-bebop.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/Dit.webp" alt="Звездное дитя" loading="lazy">
+            <div class="info">
+                <h3 class="title">Ковбой Бибоп</h3>
+                <p class="meta">Космос • Нуар</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/MF.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Монолог формацевта</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #16 -->
+<div class="anime-card-pop">
+    <a href="/anime/code-geass.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/OPUM.webp" alt="Код Гиас" loading="lazy">
+            <div class="info">
+                <h3 class="title">Ванпанчмен</h3>
+                <p class="meta">Меха • Стратегия</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/VM.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Внук мудрица</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #17 -->
+<div class="anime-card-pop">
+    <a href="/anime/tokyo-ghoul.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/TG.webp" alt="Токийский гуль" loading="lazy">
+            <div class="info">
+                <h3 class="title">Токийский гуль</h3>
+                <p class="meta">Сэйнэн • Ужасы</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/CB.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Человек бензопила</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #18 -->
+<div class="anime-card-pop">
+    <a href="/anime/one-punch-man.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/GG.webp" alt="Госпожа Кагуя: В любви как на войне" loading="lazy">
+            <div class="info">
+                <h3 class="title">Госпожа Кагуя: В любви как на войне</h3>
+                <p class="meta">Мелодрама • Комедия</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/lbx.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Битвы маленьких гигантов</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #19 -->
+<div class="anime-card-pop">
+    <a href="/anime/dragon-ball.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/DB.webp" alt="Dragon Ball" loading="lazy">
+            <div class="info">
+                <h3 class="title">Dragon Ball</h3>
+                <p class="meta">Шонэн • Боевик</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/SK.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Киллер Севен</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #20 -->
+<div class="anime-card-pop">
+    <a href="/anime/my-hero-academia.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MGA.webp" alt="Моя геройская академия" loading="lazy">
+            <div class="info">
+                <h3 class="title">Моя геройская академия</h3>
+                <p class="meta">Шонэн • Супергерои</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/RB.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Реинкарнация безработного</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #21 -->
+<div class="anime-card-pop">
+    <a href="/anime/haikyuu.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/VB.webp " alt="Волейбол!!" loading="lazy">
+            <div class="info">
+                <h3 class="title">Волейбол!!</h3>
+                <p class="meta">Спорт • Дружба</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/Nar.webp" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Наруто</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #22 -->
+<div class="anime-card-pop">
+    <a href="/anime/sword-art-online.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MM.webp" alt="Мастер меча онлайн" loading="lazy">
+            <div class="info">
+                <h3 class="title">Мастер меча онлайн</h3>
+                <p class="meta">Исэкай • Экшен</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #23 -->
+<div class="anime-card-pop">
+    <a href="/anime/rezero.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/Re.webp" alt="Re:Zero" loading="lazy">
+            <div class="info">
+                <h3 class="title">Re:Zero</h3>
+                <p class="meta">Исэкай • Драма</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #24 -->
+<div class="anime-card-pop">
+    <a href="/anime/violet-evergarden.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/Baver.webp" alt="Вайолет Эвергарден" loading="lazy">
+            <div class="info">
+                <h3 class="title">Вайолет Эвергарден</h3>
+                <p class="meta">Драма • Эмоции</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #25 -->
+<div class="anime-card-pop">
+    <a href="/anime/mob-psycho.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MP.webp" alt="Моб Психо 100" loading="lazy">
+            <div class="info">
+                <h3 class="title">Моб Психо 100</h3>
+                <p class="meta">Сверхъестественное • Комедия</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #26 -->
+<div class="anime-card-pop">
+    <a href="/anime/dr-stone.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/DS.webp" alt="Доктор Стоун" loading="lazy">
+            <div class="info">
+                <h3 class="title">Доктор Стоун</h3>
+                <p class="meta">Наука • Приключения</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #27 -->
+<div class="anime-card-pop">
+    <a href="/anime/kaguya-sama.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/DORO.webp" alt="Кагуя-сама" loading="lazy">
+            <div class="info">
+                <h3 class="title">Дороро</h3>
+                <p class="meta">Романтика • Комедия</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #28 -->
+<div class="anime-card-pop">
+    <a href="/anime/neon-genesis.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/POR.webp" alt="Neon Genesis Evangelion" loading="lazy">
+            <div class="info">
+                <h3 class="title">Паразит</h3>
+                <p class="meta">Меха • Философия</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #29 -->
+<div class="anime-card-pop">
+    <a href="/anime/bleach.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/BCH.webp" alt="Блич" loading="lazy">
+            <div class="info">
+                <h3 class="title">Блич</h3>
+                <p class="meta">Шонэн • Боевик</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #30 -->
+<div class="anime-card-pop">
+    <a href="/anime/fate-stay-night.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/NS.webp" alt="Судьба: Ночь схватки" loading="lazy">
+            <div class="info">
+                <h3 class="title">Судьба: Ночь схватки</h3>
+                <p class="meta">Фэнтези • Боевик</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #31 -->
+<div class="anime-card-pop">
+    <a href="/anime/sailor-moon.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/SM.webp" alt="Сейлор Мун" loading="lazy">
+            <div class="info">
+                <h3 class="title">Сейлор Мун</h3>
+                <p class="meta">Махо-сёдзё • Романтика</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #32 -->
+<div class="anime-card-pop">
+    <a href="/anime/fruits-basket.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/FB.webp" alt="Фруктовая корзина" loading="lazy">
+            <div class="info">
+                <h3 class="title">Фруктовая корзина</h3>
+                <p class="meta">Шодзё • Драма</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #33 -->
+<div class="anime-card-pop">
+    <a href="/anime/berserk.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/BR.webp" alt="Берсерк" loading="lazy">
+            <div class="info">
+                <h3 class="title">Берсерк</h3>
+                <p class="meta">Сэйнэн • Тёмное фэнтези</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #34 -->
+<div class="anime-card-pop">
+    <a href="/anime/k-on.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/k-on.webp" alt="Кэйон" loading="lazy">
+            <div class="info">
+                <h3 class="title">Кэйон</h3>
+                <p class="meta">Повседневность • Музыка</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #35 -->
+<div class="anime-card-pop">
+    <a href="/anime/monogatari.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MF.webp" alt="Моногатари" loading="lazy">
+            <div class="info">
+                <h3 class="title">Моногатари</h3>
+                <p class="meta">Сверхъестественное • Диалог</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #36 -->
+<div class="anime-card-pop">
+    <a href="/anime/kenja-no-mago.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/VM.webp" alt="Внук мудреца" loading="lazy">
+            <div class="info">
+                <h3 class="title">Внук мудреца</h3>
+                <p class="meta">Исэкай • Фэнтези</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #37 -->
+<div class="anime-card-pop">
+    <a href="/anime/lbx.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/lbx.webp" alt="Битвы маленьких гигантов" loading="lazy">
+            <div class="info">
+                <h3 class="title">Битвы маленьких гигантов</h3>
+                <p class="meta">Меха • Приключения</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #38 -->
+<div class="anime-card-pop">
+    <a href="/anime/scissor-seven.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/SK.webp" alt="Киллер Севен" loading="lazy">
+            <div class="info">
+                <h3 class="title">Киллер Севен</h3>
+                <p class="meta">Комедия • Боевик</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #39 -->
+<div class="anime-card-pop">
+    <a href="/anime/mushoku-tensei.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/RB.webp" alt="Реинкарнация безработного" loading="lazy">
+            <div class="info">
+                <h3 class="title">Реинкарнация безработного</h3>
+                <p class="meta">Исэкай • Фэнтези</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #40 -->
+<div class="anime-card-pop">
+    <a href="/anime/alya.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-anim/176417.jpg" alt="Аля иногда кокетничает" loading="lazy">
+            <div class="info">
+                <h3 class="title">Аля иногда кокетничает со мной по-русски</h3>
+                <p class="meta">Романтика • Школа</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #41 -->
+<div class="anime-card-pop">
+    <a href="/anime/spy-x-family.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/SH.webp" alt="Семья шпиона" loading="lazy">
+            <div class="info">
+                <h3 class="title">Семья шпиона</h3>
+                <p class="meta">Комедия • Шпион</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #42 -->
+<div class="anime-card-pop">
+    <a href="/anime/made-in-abyss.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/bf.webp" alt="Созданный в Бездне" loading="lazy">
+            <div class="info">
+                <h3 class="title">Благоухающий цветок расцветает с достоинством</h3>
+                <p class="meta">Приключения • Тёмное фэнтези</p>
             </div>
         </div>
-             <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
-            </div>
-        </div>     <div class="anime-card-pop">
-            <div class="img-wrapper">
-                <img src="../img-top100/evangelion.jpg" alt="Neon Genesis Evangelion">
-                <div class="info">
-                    <h3 class="title">Neon Genesis Evangelion</h3>
-                    <p class="meta">Меха • Психология</p>
-                </div>
+    </a>
+</div>
+
+<!-- #43 -->
+<div class="anime-card-pop">
+    <a href="/anime/psycho-pass.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PP.webp" alt="Психопаспорт" loading="lazy">
+            <div class="info">
+                <h3 class="title">Психопаспорт</h3>
+                <p class="meta">Sci-Fi • Детектив</p>
             </div>
         </div>
+    </a>
+</div>
+
+<!-- #44 -->
+<div class="anime-card-pop">
+    <a href="/anime/gintama.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/GAN.webp" alt="Гинтама" loading="lazy">
+            <div class="info">
+                <h3 class="title">Гинтама</h3>
+                <p class="meta">Комедия • Самурай</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #45 -->
+<div class="anime-card-pop">
+    <a href="/anime/clannad.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/LAN.webp" alt="Кланнад" loading="lazy">
+            <div class="info">
+                <h3 class="title">Кланнад</h3>
+                <p class="meta">Драма • Школа</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #46 -->
+<div class="anime-card-pop">
+    <a href="/anime/mushishi.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/OO.webp" alt="Мушиши" loading="lazy">
+            <div class="info">
+                <h3 class="title">Необьятный океан</h3>
+                <p class="meta">Фэнтези • Атмосфера</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #47 -->
+<div class="anime-card-pop">
+    <a href="/anime/monster.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/zaik.webp" alt="Монстр" loading="lazy">
+            <div class="info">
+                <h3 class="title">Этот глупый свин не понимает мечту девочки-зайки</h3>
+                <p class="meta">Сэйнэн • Триллер</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #48 -->
+<div class="anime-card-pop">
+    <a href="/anime/parasyte.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/BB.webp" alt="Паразит" loading="lazy">
+            <div class="info">
+                <h3 class="title">Бездомный бог</h3>
+                <p class="meta">Сэйнэн • Ужасы</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #49 -->
+<div class="anime-card-pop">
+    <a href="/anime/ping-pong.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/fkv.jpg" alt="Пинг-Понг" loading="lazy">
+            <div class="info">
+                <h3 class="title">Эта форфоровая кукла влюбилась</h3>
+                <p class="meta">Спорт • Драма</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #50 -->
+<div class="anime-card-pop">
+    <a href="/anime/ashita-no-joe.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/DYM.webp" alt="Завтрашний Джо" loading="lazy">
+            <div class="info">
+                <h3 class="title">Детектив уже мертва</h3>
+                <p class="meta">Спорт • Драма</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #51 -->
+<div class="anime-card-pop">
+    <a href="/anime/jojo.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/GP.webp" alt="Невероятные приключения ДжоДжо" loading="lazy">
+            <div class="info">
+                <h3 class="title">Золотая пора</h3>
+                <p class="meta">Шонэн • Боевик</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #52 -->
+<div class="anime-card-pop">
+    <a href="/anime/akira.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MIP.avif" alt="Акира" loading="lazy">
+            <div class="info">
+                <h3 class="title">Могу я попросить ещё кое-что?</h3>
+                <p class="meta">Sci-Fi • Киберпанк</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #53 -->
+<div class="anime-card-pop">
+    <a href="/anime/ghost-in-shell.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/TAL.webp" alt="Призрак в доспехах" loading="lazy">
+            <div class="info">
+                <h3 class="title">Твоя апрельская ложь</h3>
+                <p class="meta">Sci-Fi • Философия</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #54 -->
+<div class="anime-card-pop">
+    <a href="/anime/princess-mononoke.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/mvf.webp" alt="Принцесса Мононоке" loading="lazy">
+            <div class="info">
+                <h3 class="title">Милый во Франсе</h3>
+                <p class="meta">Фэнтези • Экология</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #55 -->
+<div class="anime-card-pop">
+    <a href="/anime/castle-in-sky.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/NZ.webp" alt="Небесный замок Лапута" loading="lazy">
+            <div class="info">
+                <h3 class="title">Небесный замок Лапута</h3>
+                <p class="meta">Приключения • Стимпанк</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #56 -->
+<div class="anime-card-pop">
+    <a href="/anime/grave-fireflies.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MS.webp" alt="Могила светлячков" loading="lazy">
+            <div class="info">
+                <h3 class="title">Могила светлячков</h3>
+                <p class="meta">Драма • Война</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #57 -->
+<div class="anime-card-pop">
+    <a href="/anime/howls-moving-castle.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/HZ.webp" alt="Ходячий замок Хаула" loading="lazy">
+            <div class="info">
+                <h3 class="title">Ходячий замок Хаула</h3>
+                <p class="meta">Фэнтези • Романтика</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #58 -->
+<div class="anime-card-pop">
+    <a href="/anime/kikis-delivery.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/VSD.webp" alt="Ведьмина служба доставки" loading="lazy">
+            <div class="info">
+                <h3 class="title">Ведьмина служба доставки</h3>
+                <p class="meta">Фэнтези • Повседневность</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #59 -->
+<div class="anime-card-pop">
+    <a href="/anime/ponyo.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PNS.webp" alt="Рыбка Поньо" loading="lazy">
+            <div class="info">
+                <h3 class="title">Песнь ночных сов</h3>
+                <p class="meta">Фэнтези • Детство</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #60 -->
+<div class="anime-card-pop">
+    <a href="/anime/porco-rosso.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/JOJO.webp" alt="Порко Россо" loading="lazy">
+            <div class="info">
+                <h3 class="title">Невероятные приключения ДжоДжо</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #61 -->
+<div class="anime-card-pop">
+    <a href="/anime/whisper-heart.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/DSY.webp" alt="Шёпот сердца" loading="lazy">
+            <div class="info">
+                <h3 class="title">Двуличная сестрёнка Умару</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #62 -->
+<div class="anime-card-pop">
+    <a href="/anime/only-yesterday.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PL.webp" alt="Ещё вчера" loading="lazy">
+            <div class="info">
+                <h3 class="title">Повторная жизнь</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #63 -->
+<div class="anime-card-pop">
+    <a href="/anime/totoro.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/SCG.webp" alt="Мой сосед Тоторо" loading="lazy">
+            <div class="info">
+                <h3 class="title">Семь смертных грехов</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #64 -->
+<div class="anime-card-pop">
+    <a href="/anime/nausicaa.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/NDV.webp" alt="Навсикая из Долины Ветров" loading="lazy">
+            <div class="info">
+                <h3 class="title">Навсикая из Долины Ветров</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #65 -->
+<div class="anime-card-pop">
+    <a href="/anime/lupin-iii.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/dan.webp" alt="Люпен III" loading="lazy">
+            <div class="info">
+                <h3 class="title">Дандадан</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #66 -->
+<div class="anime-card-pop">
+    <a href="/anime/doraemon.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/38L.webp" alt="Дораэмон" loading="lazy">
+            <div class="info">
+                <h3 class="title">Заботливая 800-летняя жена</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #67 -->
+<div class="anime-card-pop">
+    <a href="/anime/slam-dunk.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PV.webp" alt="Слэм Данк" loading="lazy">
+            <div class="info">
+                <h3 class="title">Пластиковые воспоминания </h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #68 -->
+<div class="anime-card-pop">
+    <a href="/anime/captain-tsubasa.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MSLNY.webp" alt="Капитан Цубаса" loading="lazy">
+            <div class="info">
+                <h3 class="title">Моя школьная ромонтическая жизнь не удолась </h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #69 -->
+<div class="anime-card-pop">
+    <a href="/anime/initial-d.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/OR.webp" alt="Инициал Ди" loading="lazy">
+            <div class="info">
+                <h3 class="title">Одинокий рокер</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #70 -->
+<div class="anime-card-pop">
+    <a href="/anime/yu-yu-hakusho.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/SD.webp" alt="Ю Ю Хакушо" loading="lazy">
+            <div class="info">
+                <h3 class="title">Счастливая долина</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #71 -->
+<div class="anime-card-pop">
+    <a href="/anime/ranma.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PR.webp" alt="Ранма ½" loading="lazy">
+            <div class="info">
+                <h3 class="title">Призрак: Реквием по Призраку</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #72 -->
+<div class="anime-card-pop">
+    <a href="/anime/inuyasha.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PPE.webp" alt="Инуяша" loading="lazy">
+            <div class="info">
+                <h3 class="title">Причины полюбить ее</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #73 -->
+<div class="anime-card-pop">
+    <a href="/anime/rurouni-kenshin.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/OVMC.webp" alt="Бродяга Кэнсин" loading="lazy">
+            <div class="info">
+                <h3 class="title">Опастность в моем сердце </h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #74 -->
+<div class="anime-card-pop">
+    <a href="/anime/trigun.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PF.webp" alt="Триган" loading="lazy">
+            <div class="info">
+                <h3 class="title">Провожающий в последний путь Фрирен</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #75 -->
+<div class="anime-card-pop">
+    <a href="/anime/outlaw-star.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/LT.webp" alt="Звёздный изгой" loading="lazy">
+            <div class="info">
+                <h3 class="title">Летнее время</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #76 -->
+<div class="anime-card-pop">
+    <a href="/anime/flcl.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PLO.webp" alt="FLCL" loading="lazy">
+            <div class="info">
+                <h3 class="title">Поднятие уровня в одиночку</h3>
+                <p class="meta">Комедия • Абсурд</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #77 -->
+<div class="anime-card-pop">
+    <a href="/anime/serial-experiments-lain.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/TM.webp" alt="Эксперименты Лэйн" loading="lazy">
+            <div class="info">
+                <h3 class="title">Токийские мстители</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #78 -->
+<div class="anime-card-pop">
+    <a href="/anime/perfect-blue.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/BT.avif" alt="Идеальная синева" loading="lazy">
+            <div class="info">
+                <h3 class="title">Брачный токсин</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #79 -->
+<div class="anime-card-pop">
+    <a href="/anime/paprika.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MDM.webp" alt="Паприка" loading="lazy">
+            <div class="info">
+                <h3 class="title">Моя девушка не только милая</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #80 -->
+<div class="anime-card-pop">
+    <a href="/anime/tokyo-godfathers.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/DU.webp" alt="Токийские крёстные" loading="lazy">
+            <div class="info">
+                <h3 class="title">Дорога юности </h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #81 -->
+<div class="anime-card-pop">
+    <a href="/anime/millennium-actress.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/2,5d.webp" alt="Актриса тысячелетия" loading="lazy">
+            <div class="info">
+                <h3 class="title">Соблазн измерения 2,5D</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #82 -->
+<div class="anime-card-pop">
+    <a href="/anime/summer-wars.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/OT.webp" alt="Летние войны" loading="lazy">
+            <div class="info">
+                <h3 class="title">Озорная Такаги</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #83 -->
+<div class="anime-card-pop">
+    <a href="/anime/wolf-children.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/PP2.webp" alt="Дети волка" loading="lazy">
+            <div class="info">
+                <h3 class="title">Привлекая поцелуй </h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #84 -->
+<div class="anime-card-pop">
+    <a href="/anime/boy-and-beast.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/KR.webp" alt="Мальчик и чудовище" loading="lazy">
+            <div class="info">
+                <h3 class="title">Кошачий рай</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #85 -->
+<div class="anime-card-pop">
+    <a href="/anime/mirai.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/BNB.webp" alt="Мирай из будущего" loading="lazy">
+            <div class="info">
+                <h3 class="title">Мой братик больше не братик</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #86 -->
+<div class="anime-card-pop">
+    <a href="/anime/5cm-per-second.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/APS.webp" alt="5 сантиметров в секунду" loading="lazy">
+            <div class="info">
+                <h3 class="title">Ангел живуший по соседству</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #87 -->
+<div class="anime-card-pop">
+    <a href="/anime/voice-of-distant-star.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/SIC.webp" alt="Голос далёкой звезды" loading="lazy">
+            <div class="info">
+                <h3 class="title">Сад изящных слов</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #88 -->
+<div class="anime-card-pop">
+    <a href="/anime/garden-of-words.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/HOR.webp" alt="Сад изящных слов" loading="lazy">
+            <div class="info">
+                <h3 class="title">Хоримия</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #89 -->
+<div class="anime-card-pop">
+    <a href="/anime/weather-with-you.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/DP.webp" alt="Дитя погоды" loading="lazy">
+            <div class="info">
+                <h3 class="title">Дитя погоды</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #90 -->
+<div class="anime-card-pop">
+    <a href="/anime/suzume.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/1920x.webp" alt="Судзуме, закрывающая двери" loading="lazy">
+            <div class="info">
+                <h3 class="title">Форма голоса</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #91 -->
+<div class="anime-card-pop">
+    <a href="/anime/belle.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/WIP.webp" alt="Белль" loading="lazy">
+            <div class="info">
+                <h3 class="title">Волчица и пряности</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #92 -->
+<div class="anime-card-pop">
+    <a href="/anime/akudama-drive.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/TORO.webp" alt="Акудама Драйв" loading="lazy">
+            <div class="info">
+                <h3 class="title">Мой сосед Тоторо</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #93 -->
+<div class="anime-card-pop">
+    <a href="/anime/vivy.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/YCH.webp" alt="Вивы: Песнь флюоритового глаза" loading="lazy">
+            <div class="info">
+                <h3 class="title">Ученик чудовищя</h3>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #94 -->
+<div class="anime-card-pop">
+    <a href="/anime/86.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/fsvs.webp" alt="86" loading="lazy">
+            <div class="info">
+                <h3 class="title">5 сантиметров в секунду</h3>
+                <p class="meta">Драма • Война</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #95 -->
+<div class="anime-card-pop">
+    <a href="/anime/ranking-of-kings.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/ROK.webp" alt="Рейтинг королей" loading="lazy">
+            <div class="info">
+                <h3 class="title">Рейтинг королей</h3>
+                <p class="meta">Фэнтези • Дружба</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #96 -->
+<div class="anime-card-pop">
+    <a href="/anime/sonny-boy.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/SB.webp" alt="Сонни Бой" loading="lazy">
+            <div class="info">
+                <h3 class="title">Сонни Бой</h3>
+                <p class="meta">Эксперимент • Психология</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #97 -->
+<div class="anime-card-pop">
+    <a href="/anime/odd-taxi.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/OT.webp" alt="Необычное такси" loading="lazy">
+            <div class="info">
+                <h3 class="title">Необычное такси</h3>
+                <p class="meta">Детектив • Комедия</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #98 -->
+<div class="anime-card-pop">
+    <a href="/anime/mieruko-chan.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/MC.webp" alt="Миэруко-чан" loading="lazy">
+            <div class="info">
+                <h3 class="title">Миэруко-чан</h3>
+                <p class="meta">Ужасы • Комедия</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #99 -->
+<div class="anime-card-pop">
+    <a href="/anime/kubo.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/Kubo.webp" alt="Кубо не простит меня" loading="lazy">
+            <div class="info">
+                <h3 class="title">Кубо не простит меня</h3>
+                <p class="meta">Драма • Школа</p>
+            </div>
+        </div>
+    </a>
+</div>
+
+<!-- #100 -->
+<div class="anime-card-pop">
+    <a href="/anime/frieren.html" class="anime-link">
+        <div class="img-wrapper">
+            <img src="../img-top100/Frieren.webp" alt="Фрирен" loading="lazy">
+            <div class="info">
+                <h3 class="title">Фрирен: За гранью конца пути</h3>
+                <p class="meta">Фэнтези • Путешествия</p>
+            </div>
+        </div>
+    </a>
+</div>
     </main>
 
     <footer class="site-footer">
