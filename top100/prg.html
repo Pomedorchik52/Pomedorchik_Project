@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anitime - Призрак: Реквием по Призраку</title>
+    <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
+    <link rel="stylesheet" href="../styles/unified.css">
+    <script src="../scripts/animations.js" defer></script>
+    <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        html, body {
+            min-height: 100vh;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, #0c0d12 0%, #1a1b24 100%);
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 17, 25, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        .logo a {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .logo a:hover {
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            transform: scale(1.05);
+        }
+        .account {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        .account a {
+            padding: 0.6rem 1.2rem;
+            border-radius: 999px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .account a:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        }
+
+        /* MAIN */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        .content-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
+        .meta-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .favorite-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 126, 179, 0.3);
+            transition: color 0.3s ease, transform 0.2s ease, text-shadow 0.3s ease, filter 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+        }
+        .favorite-btn:hover,
+        .favorite-btn.active {
+            color: #ff6b6b;
+            transform: scale(1.1);
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.2), rgba(255, 126, 179, 0.1));
+            border-color: #ff6b6b;
+            text-shadow: 0 0 5px rgba(255, 107, 107, 0.7), 0 0 3px rgba(255, 126, 179, 0.6);
+            filter: drop-shadow(0 0 3px rgba(255, 126, 179, 0.6));
+        }
+        .favorite-btn:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 4px rgba(255, 107, 107, 0.2);
+            border-radius: 50%;
+        }
+
+        /* VIDEO PLAYER */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 2rem auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            background: #0c0d12;
+            aspect-ratio: 16 / 9;
+        }
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: #000;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+        .video-container.playing .video-overlay {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+        .play-button::before {
+            content: '▶';
+            font-size: 1.5rem;
+            color: #fff;
+        }
+        .video-error {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+            color: #ff6b6b;
+            font-size: 1rem;
+        }
+
+        /* VIDEO CONTROLS */
+        .video-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .custom-select {
+            position: relative;
+            width: 200px;
+        }
+        .custom-select__trigger {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #f5f5f5;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .custom-select__trigger:hover {
+            background: rgba(255, 107, 107, 0.2);
+            border-color: #ff6b6b;
+        }
+        .custom-select__trigger::after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: #ff7eb3;
+        }
+        .custom-select__options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(15, 17, 25, 0.95);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 10;
+            overflow: hidden;
+        }
+        .custom-select.open .custom-select__options {
+            display: block;
+        }
+        .custom-select__option {
+            padding: 0.6rem 1.2rem;
+            color: #f5f5f5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .custom-select__option:hover,
+        .custom-select__option.selected {
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            color: #fff;
+        }
+        .custom-select__option.selected::after {
+            content: '✔';
+            margin-left: 0.5rem;
+        }
+
+        /* COMMENT SECTION */
+        .comment-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+        .comment-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .comment-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .comment-form input[type="text"] {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            color: #f5f5f5;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            min-width: 200px;
+        }
+        .comment-form input[type="text"]:focus {
+            border-color: #ff6b6b;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55);
+        }
+        .comment-form button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #ff7eb3, #ff6b6b);
+            color: #fff;
+            border: 1px solid rgba(255, 126, 179, 0.4);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.4), 0 0 8px rgba(255, 126, 179, 0.3);
+        }
+        .comment-form button:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(145deg, #ff6b6b, #ff7eb3);
+            border-color: #ff6b6b;
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.5), 0 0 10px rgba(255, 126, 179, 0.4);
+        }
+        .comment-form button:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 4px rgba(255, 107, 107, 0.2);
+            border-radius: 12px;
+        }
+        .comment-form__rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+        }
+        .comment-form__rating label {
+            font-size: 1.5rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.3s ease, transform 0.2s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .comment-form__rating input[type="radio"] {
+            display: none;
+        }
+        .comment-form__rating label:hover,
+        .comment-form__rating label.active {
+            color: #ff6b6b;
+            transform: scale(1.1);
+        }
+        .comment-form__rating:hover label {
+            transition-delay: 0s;
+        }
+        .comment-form__rating label:nth-child(2) { transition-delay: 0s; }
+        .comment-form__rating label:nth-child(4) { transition-delay: 0.05s; }
+        .comment-form__rating label:nth-child(6) { transition-delay: 0.1s; }
+        .comment-form__rating label:nth-child(8) { transition-delay: 0.15s; }
+        .comment-form__rating label:nth-child(10) { transition-delay: 0.2s; }
+        .comment-form__rating input[type="radio"]:checked + label {
+            color: #ff6b6b;
+            transform: scale(1.1);
+        }
+        .comment-form__rating input[type="radio"]:hover + label {
+            color: #ff6b6b;
+            transform: scale(1.1);
+        }
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .comment-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .comment-item__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .comment-item__username {
+            font-weight: 600;
+            color: #ff7eb3;
+        }
+        .comment-item__rating {
+            font-size: 1.2rem;
+            color: #ff6b6b;
+        }
+        .comment-item__date {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .comment-item__content {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        .comment-error {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            margin-top: 4rem;
+            padding: 3rem 1rem;
+            background: #12131a;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .site-footer p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .footer-links a {
+            color: #ff7eb3;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #ff6b6b;
+            text-decoration: underline;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .social-links a {
+            font-size: 1.5rem;
+            color: #ff7eb3;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #ff6b6b;
+            transform: scale(1.1);
+        }
+
+        /* ACCESSIBILITY */
+        a:focus-visible, .custom-select__trigger:focus-visible, .custom-select__option:focus-visible, .comment-form input:focus-visible, .comment-form button:focus-visible, .comment-form__rating label:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 6px rgba(255, 107, 107, 0.2);
+            border-radius: 12px;
+        }
+
+        /* ANIMATIONS */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1000px) {
+            .video-container {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .logo a {
+                font-size: 1.8rem;
+            }
+            .account a {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .custom-select {
+                width: 100%;
+            }
+            .content-card, .comment-section {
+                padding: 1.5rem;
+            }
+            .comment-form {
+                flex-direction: column;
+            }
+            .comment-form input[type="text"] {
+                width: 100%;
+            }
+            .comment-form__rating {
+                justify-content: center;
+            }
+        }
+
+        /* REDUCED MOTION */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="../БАЗа/home.html">Anitime</a></div>
+        <div class="account"><a href="../вход/Вход.html">Вход</a><a href="../вход/регестрация.html">Регистрация</a></div>
+    </header>
+    <main>
+        <div class="content-card fade-in">
+            <h1>Призрак: Реквием по Призраку</h1>
+            <p class="description">Страница аниме: Призрак: Реквием по Призраку.</p>
+            <div class="meta-info">
+                <p><strong>Статус:</strong> Завершено</p>
+                <p><strong>Год выхода:</strong> 2009</p>
+                <p><strong>Жанры:</strong> Экшен, Драма, Триллер</p>
+                <button class="favorite-btn" id="favorite-btn" title="Добавить в избранное">★</button>
+            </div>
+        </div>
+        <div class="video-controls fade-in">
+            <div class="custom-select" id="episode-select">
+                <div class="custom-select__trigger">Серия 1</div>
+                <div class="custom-select__options">
+                    <div class="custom-select__option selected" data-value="episode1">Серия 1</div>
+                    <div class="custom-select__option" data-value="episode2">Серия 2</div>
+                    <div class="custom-select__option" data-value="episode3">Серия 3</div>
+                </div>
+            </div>
+            <div class="custom-select" id="audio-select">
+                <div class="custom-select__trigger">AniLibria</div>
+                <div class="custom-select__options">
+                    <div class="custom-select__option selected" data-value="sub">AniLibria</div>
+                    <div class="custom-select__option" data-value="dub">Anidub</div>
+                    <div class="custom-select__option" data-value="original">Original</div>
+                </div>
+            </div>
+        </div>
+        <div class="video-container fade-in">
+            <video controls poster="../img-top100/PR.webp" id="video-player">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" id="video-source">
+                <track src="path/to/subtitles_episode1.vtt" kind="subtitles" srclang="ru" label="Русские субтитры" id="subtitle-track" disabled>
+                <p class="video-error">Ваш браузер не поддерживает видео или файл не найден.</p>
+            </video>
+            <div class="video-overlay"><div class="play-button"></div></div>
+        </div>
+        <section class="comment-section fade-in">
+            <h2>Комментарии</h2>
+            <form class="comment-form" id="comment-form">
+                <div class="comment-form__rating" role="radiogroup" aria-label="Оценка">
+                    <input type="radio" id="star1" name="rating" value="1" required><label for="star1" title="1 звезда">★</label>
+                    <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 звезды">★</label>
+                    <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 звезды">★</label>
+                    <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 звезды">★</label>
+                    <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 звёзд">★</label>
+                </div>
+                <input type="text" id="comment-input" placeholder="Ваш комментарий..." aria-label="Ваш комментарий" required>
+                <button type="submit">Отправить</button>
+            </form>
+            <p class="comment-error" id="comment-error">Пожалуйста, выберите оценку и введите комментарий (до 500 символов).</p>
+            <div class="comment-list" id="comment-list"></div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>© 2025 Anitime — Все права защищены</p>
+            <div class="footer-links">
+                <a href="../подвал/контакты.html">Контакты</a>
+                <a href="../подвал/проэкт.html">О проекте</a>
+                <a href="../подвал/конф.html">Политика конфиденциальности</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const videoSources = {
+            episode1: { dub: "https://www.w3schools.com/html/mov_bbb.mp4", sub: "https://www.w3schools.com/html/mov_bbb.mp4", original: "https://www.w3schools.com/html/mov_bbb.mp4", subtitles: "path/to/subtitles_episode1.vtt" },
+            episode2: { dub: "path/to/episode2_dub.mp4", sub: "path/to/episode2_sub.mp4", original: "path/to/episode2_original.mp4", subtitles: "path/to/subtitles_episode2.vtt" },
+            episode3: { dub: "path/to/episode3_dub.mp4", sub: "path/to/episode3_sub.mp4", original: "path/to/episode3_original.mp4", subtitles: "path/to/subtitles_episode3.vtt" }
+        };
+        const video = document.querySelector('#video-player');
+        const videoSource = document.querySelector('#video-source');
+        const subtitleTrack = document.querySelector('#subtitle-track');
+        const videoContainer = document.querySelector('.video-container');
+        const playButton = document.querySelector('.play-button');
+        const videoOverlay = document.querySelector('.video-overlay');
+        const videoError = document.querySelector('.video-error');
+        const episodeSelect = document.querySelector('#episode-select');
+        const audioSelect = document.querySelector('#audio-select');
+        const favoriteBtn = document.querySelector('#favorite-btn');
+        document.querySelectorAll('.custom-select').forEach(select => {
+            const trigger = select.querySelector('.custom-select__trigger');
+            const options = select.querySelectorAll('.custom-select__option');
+            trigger.addEventListener('click', () => { select.classList.toggle('open'); });
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    trigger.textContent = option.textContent;
+                    select.classList.remove('open');
+                    updateVideoSource();
+                });
+            });
+            document.addEventListener('click', (e) => { if (!select.contains(e.target)) { select.classList.remove('open'); } });
+        });
+        function updateVideoSource() {
+            const episode = episodeSelect.querySelector('.selected').dataset.value;
+            const audio = audioSelect.querySelector('.selected').dataset.value;
+            const newSource = videoSources[episode][audio];
+            videoSource.setAttribute('src', newSource);
+            if (audio === 'sub') { subtitleTrack.setAttribute('src', videoSources[episode].subtitles); subtitleTrack.removeAttribute('disabled'); } else { subtitleTrack.setAttribute('disabled', ''); }
+            video.load();
+            videoError.style.display = 'none';
+            video.style.display = 'block';
+            videoContainer.classList.remove('playing');
+        }
+        video.addEventListener('error', () => { videoError.style.display = 'block'; video.style.display = 'none'; });
+        playButton.addEventListener('click', () => {
+            if (video.paused) { video.play().then(() => { videoContainer.classList.add('playing'); }).catch(() => { videoError.style.display = 'block'; }); }
+            else { video.pause(); videoContainer.classList.remove('playing'); }
+        });
+        video.addEventListener('play', () => { videoContainer.classList.add('playing'); });
+        video.addEventListener('pause', () => { videoContainer.classList.remove('playing'); });
+        video.addEventListener('loadedmetadata', () => { video.style.display = 'block'; videoError.style.display = 'none'; });
+        videoContainer.addEventListener('dblclick', () => { if (!document.fullscreenElement) { videoContainer.requestFullscreen().catch(() => {}); } else { document.exitFullscreen(); } });
+        let isFavorited = false;
+        favoriteBtn.addEventListener('click', () => { isFavorited = !isFavorited; favoriteBtn.classList.toggle('active', isFavorited); favoriteBtn.setAttribute('title', isFavorited ? 'Удалить из избранного' : 'Добавить в избранное'); });
+        const commentForm = document.querySelector('#comment-form');
+        const commentInput = document.querySelector('#comment-input');
+        const commentError = document.querySelector('#comment-error');
+        const commentList = document.querySelector('#comment-list');
+        const ratingInputs = document.querySelectorAll('.comment-form__rating input[type="radio"]');
+        const ratingLabels = document.querySelectorAll('.comment-form__rating label');
+        const currentUser = { id: 'user123', username: 'Гость' };
+        let comments = [];
+        function loadComments() { commentList.innerHTML = ''; comments.forEach(comment => renderComment(comment)); }
+        function renderComment(comment) { const item = document.createElement('div'); item.className = 'comment-item'; const header = document.createElement('div'); header.className = 'comment-item__header'; const username = document.createElement('span'); username.className = 'comment-item__username'; username.textContent = comment.username; const rating = document.createElement('span'); rating.className = 'comment-item__rating'; rating.textContent = '★'.repeat(comment.rating); const date = document.createElement('span'); date.className = 'comment-item__date'; date.textContent = new Date(comment.date).toLocaleString('ru-RU'); header.appendChild(username); header.appendChild(rating); header.appendChild(date); const content = document.createElement('p'); content.className = 'comment-item__content'; content.textContent = comment.text; item.appendChild(header); item.appendChild(content); commentList.prepend(item); }
+        function validateComment(text) { return text && text.trim().length > 0 && text.trim().length <= 500; }
+        commentForm.addEventListener('submit', (e) => { e.preventDefault(); const text = commentInput.value.trim(); const rating = Array.from(ratingInputs).find(input => input.checked)?.value; if (!validateComment(text) || !rating) { commentError.style.display = 'block'; return; } commentError.style.display = 'none'; const comment = { id: Date.now().toString(), userId: currentUser.id, username: currentUser.username, text, rating: Number(rating), date: new Date().toISOString() }; comments.push(comment); renderComment(comment); commentInput.value = ''; ratingInputs.forEach(input => (input.checked = false)); ratingLabels.forEach(label => label.classList.remove('active')); });
+        ratingLabels.forEach(label => { label.addEventListener('click', () => { ratingLabels.forEach(l => l.classList.remove('active')); label.classList.add('active'); }); });
+        loadComments();
+    </script>
+</body>
+</html>

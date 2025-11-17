@@ -105,7 +105,9 @@ main {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.content-card { padding: 2rem; }
+.content-card {
+    padding: 2rem;
+}
 
 .anime-card-pop {
     overflow: hidden;
@@ -119,8 +121,12 @@ main {
     border-color: rgba(255, 126, 179, 0.32);
 }
 
-.anime-card-pop img { transition: transform 0.3s ease; }
-.anime-card-pop:hover img { transform: scale(1.05); }
+.anime-card-pop img {
+    transition: transform 0.3s ease;
+}
+.anime-card-pop:hover img {
+    transform: scale(1.05);
+}
 
 /* Typography */
 h1, h2, h3 {
@@ -136,7 +142,9 @@ h1 {
     -webkit-text-fill-color: transparent;
 }
 
-.description { color: var(--muted); }
+.description {
+    color: var(--muted);
+}
 
 /* Buttons */
 button, .btn {
@@ -214,14 +222,26 @@ textarea:focus-visible {
 }
 
 /* Animations */
-.fade-in { animation: fadeIn 0.6s ease both; }
-.slide-up { animation: slideUp 0.6s ease both; }
-.zoom-in { animation: zoomIn 0.5s ease both; }
+.fade-in {
+    animation: fadeIn 0.6s ease both;
+}
+.slide-up {
+    animation: slideUp 0.6s ease both;
+}
+.zoom-in {
+    animation: zoomIn 0.5s ease both;
+}
 
 /* Progressive appear for common blocks without touching HTML */
-main h1 { animation: slideUp 0.6s ease both; }
-.content-card, .comment-section { animation: fadeIn 0.6s ease both; }
-.anime-card-pop { animation: slideUp 0.6s ease both; }
+main h1 {
+    animation: slideUp 0.6s ease both;
+}
+.content-card, .comment-section {
+    animation: fadeIn 0.6s ease both;
+}
+.anime-card-pop {
+    animation: slideUp 0.6s ease both;
+}
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }

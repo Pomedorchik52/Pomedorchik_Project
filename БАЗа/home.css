@@ -1,4 +1,4 @@
-   * {
+* {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -111,10 +111,19 @@
             -webkit-text-fill-color: transparent;
             color: transparent;
         }
-        .popular-section { position: relative; overflow: visible; }
-        .popular-section .slider-btn { z-index: 2; }
-        .popular-section .slider-btn-prev { left: -25px; }
-        .popular-section .slider-btn-next { right: -25px; }
+        .popular-section {
+            position: relative;
+            overflow: visible;
+        }
+        .popular-section .slider-btn {
+            z-index: 2;
+        }
+        .popular-section .slider-btn-prev {
+            left: -25px;
+        }
+        .popular-section .slider-btn-next {
+            right: -25px;
+        }
 
         /* Card hover lift - moved to .carousel .slide above */
         .slider-wrapper {
@@ -123,14 +132,29 @@
             max-width: 1200px;
         }
         /* NEW CAROUSEL */
-        .carousel { position: relative; max-width: 1200px; margin: 2rem auto; overflow: visible; }
-        .carousel .viewport { width: 90%; margin: 0 auto; overflow: hidden; padding: 40px 0; }
+        .carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            overflow: visible;
+        }
+        .carousel .viewport {
+            width: 90%;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 40px 0;
+        }
         .carousel .track {
-            display: flex; gap: 1rem; transition: transform 420ms ease;
+            display: flex;
+            gap: 1rem;
+            transition: transform 420ms ease;
             will-change: transform;
         }
         .carousel .slide {
-            border-radius: 16px; overflow: hidden; background: #181a24; position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #181a24;
+            position: relative;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
             box-shadow: var(--shadow);
         }
@@ -138,21 +162,53 @@
             transform: translateY(-6px);
             box-shadow: var(--shadow-lg);
         }
-        .carousel .slide img { width: 100%; height: 300px; object-fit: cover; display: block; border-radius: 16px; }
+        .carousel .slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            border-radius: 16px;
+        }
         .carousel .slide .info {
-            position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.9rem 1rem;
             background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
         }
-        .carousel .slide .title { font-size: 1rem; font-weight: 700; color: #fff; margin: 0 0 2px 0; }
-        .carousel .slide .meta { font-size: 0.85rem; color: #d5d5d5; margin: 0; }
+        .carousel .slide .title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 2px 0;
+        }
+        .carousel .slide .meta {
+            font-size: 0.85rem;
+            color: #d5d5d5;
+            margin: 0;
+        }
         .carousel .slide .badge {
-            position: absolute; top: 10px; left: 10px; padding: 0.3rem 0.6rem; font-size: 0.75rem; font-weight: 700;
-            border-radius: 999px; background: rgba(0,0,0,0.55); color: #fff; backdrop-filter: blur(4px);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 999px;
+            background: rgba(0,0,0,0.55);
+            color: #fff;
+            backdrop-filter: blur(4px);
             border: 1px solid rgba(255,255,255,0.12);
         }
         .carousel .slide::after {
-            content: ""; position: absolute; inset: 0; pointer-events: none;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0)); opacity: 0.85; transition: opacity 0.25s ease;
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
+            opacity: 0.85;
+            transition: opacity 0.25s ease;
         }
         .carousel .slide:hover::after { opacity: 1; }
 
