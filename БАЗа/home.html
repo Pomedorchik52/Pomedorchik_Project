@@ -835,7 +835,7 @@
             <a href="../nav-menu/top100.html">Топ 100</a>
             <a href="../nav-menu/oponing.html">Онгоинги</a>
             <a href="../nav-menu/anons.html">Анонсы</a>
-            <a href="#random">Случайное</a>
+            <a id="randomBtn" href="">Случайное</a>
         </div>
     </nav>
 
@@ -1190,6 +1190,37 @@
     </footer>
 
     <script>
+
+        const files = [
+            '../anim-site/999lvl.html',
+            '../anim-site/akspr.html',
+            '../anim-site/at.html',
+            '../anim-site/cp.html',
+            '../anim-site/NO.html',
+            '../anim-site/dan.html',
+            '../anim-site/dp.html',
+            '../anim-site/fg.html',
+            '../anim-site/fkv.html',
+            '../anim-site/HB.html',
+            '../anim-site/jojo.html',
+            '../anim-site/k№8.html',
+            '../anim-site/lp.html',
+            '../anim-site/mvf.html',
+            '../anim-site/nk.html',
+            '../anim-site/onepis.html',
+            '../anim-site/bl.html',
+            '../anim-site/bz.html',
+            '../anim-site/doro.html',
+            '../anim-site/lbx.html',
+            '../anim-site/ms.html',
+            '../anim-site/gg.html',
+        ]
+
+        document.getElementById('randomBtn').addEventListener('click', () => {
+            const randomFile = files[Math.floor(Math.random() * files.length )];
+            window.open(randomFile,'_blank');
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             class Carousel {
                 constructor(root) {
