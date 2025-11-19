@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль</title>
+    <title>Мой профиль — Anitime</title>
     <link rel="icon" href="../img/free-icon-japanese-4917696.png" type="image/x-icon">
     <style>
         * {
@@ -15,7 +15,7 @@
         html, body {
             min-height: 100vh;
             font-family: "Inter", "Segoe UI", sans-serif;
-            background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            background: linear-gradient(180deg, #0c0d12 0%, #1a1b24 100%);
             color: #f5f5f5;
             line-height: 1.6;
         }
@@ -37,11 +37,10 @@
         .logo a {
             font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            color: transparent;
             text-decoration: none;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
@@ -50,11 +49,6 @@
             text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
             transform: scale(1.05);
         }
-        .account {
-            display: flex;
-            gap: 1.2rem;
-            align-items: center;
-        }
         .account a {
             padding: 0.6rem 1.2rem;
             border-radius: 999px;
@@ -62,7 +56,6 @@
             text-decoration: none;
             background: rgba(255, 255, 255, 0.08);
             transition: all 0.3s ease;
-            font-size: 0.95rem;
             font-weight: 500;
         }
         .account a:hover {
@@ -71,679 +64,204 @@
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
         }
 
-        /* NAVIGATION */
-        .nav-menu {
-            background: rgba(15, 17, 25, 0.95);
-            padding: 1rem 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        /* MAIN CONTENT */
+        main {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 2rem;
         }
-        .nav-menu .account {
-            justify-content: center;
-        }
-
-        /* HERO SECTION */
-        .content {
-            text-align: center;
-            padding: 5rem 1rem;
-            animation: fadeIn 1s ease-in;
-        }
-        .content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            font-weight: 800;
-        }
-        .content p {
-            max-width: 700px;
-            margin: 0 auto;
-            opacity: 0.9;
-            font-size: 1.2rem;
-            color: #d5d5d5;
-        }
-
-        /* POPULAR SLIDER */
-        .popular-section {
-            padding: 3rem 1rem;
-        }
-        .popular-section h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-        .popular-section { position: relative; overflow: visible; }
-        .popular-section .slider-btn { z-index: 2; }
-        .popular-section .slider-btn-prev { left: -25px; }
-        .popular-section .slider-btn-next { right: -25px; }
-
-        .slider-wrapper {
-            position: relative;
-            margin: 2rem auto;
-            max-width: 1200px;
-        }
-        /* NEW CAROUSEL */
-        .carousel { position: relative; max-width: 1200px; margin: 2rem auto; overflow: visible; }
-        .carousel .viewport { width: 90%; margin: 0 auto; overflow: hidden; padding: 40px 0; }
-        .carousel .track {
-            display: flex; gap: 1rem; transition: transform 420ms ease;
-            will-change: transform;
-        }
-        .carousel .slide {
-            border-radius: 16px; overflow: hidden; background: #181a24; position: relative;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: var(--shadow);
-        }
-        .carousel .slide:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-        .carousel .slide img { width: 100%; height: 300px; object-fit: cover; display: block; border-radius: 16px; }
-        .carousel .slide .info {
-            position: absolute; left: 0; right: 0; bottom: 0; padding: 0.9rem 1rem;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
-        }
-        .carousel .slide .title { font-size: 1rem; font-weight: 700; color: #fff; margin: 0 0 2px 0; }
-        .carousel .slide .meta { font-size: 0.85rem; color: #d5d5d5; margin: 0; }
-        .carousel .slide .badge {
-            position: absolute; top: 10px; left: 10px; padding: 0.3rem 0.6rem; font-size: 0.75rem; font-weight: 700;
-            border-radius: 999px; background: rgba(0,0,0,0.55); color: #fff; backdrop-filter: blur(4px);
-            border: 1px solid rgba(255,255,255,0.12);
-        }
-        .carousel .slide::after {
-            content: ""; position: absolute; inset: 0; pointer-events: none;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0)); opacity: 0.85; transition: opacity 0.25s ease;
-        }
-        .carousel .slide:hover::after { opacity: 1; }
-
-        /* SLIDER NAVIGATION */
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, rgba(255, 126, 179, 0.9), rgba(255, 107, 107, 0.9));
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            font-weight: 700;
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            cursor: pointer;
-            display: grid; place-items: center;
+        .profile-card {
+            background: rgba(20, 22, 34, 0.6);
+            border-radius: 20px;
+            padding: 2.5rem;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3), 0 4px 12px rgba(0,0,0,0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 3;
-            user-select: none;
-            opacity: 0.85;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        .slider-btn:hover { 
-            opacity: 1; 
-            transform: translateY(-50%) translateY(-2px) scale(1.05); 
-            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4), 0 6px 20px rgba(0,0,0,0.5);
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .slider-btn:active { 
-            transform: translateY(-50%) translateY(0) scale(0.95); 
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3), 0 2px 8px rgba(0,0,0,0.4);
-        }
-        .slider-btn:focus-visible { 
-            outline: none; 
-            box-shadow: 0 0 0 3px rgba(255, 126, 179, 0.6), 0 8px 25px rgba(255, 107, 107, 0.3);
-        }
-        .slider-btn-prev { left: -20px; }
-        .slider-btn-next { right: -20px; }
 
-        /* CUSTOM DROPDOWN */
-        .custom-dropdown {
+        /* Аватар */
+        .avatar-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .avatar-wrapper {
             position: relative;
             display: inline-block;
-            min-width: 200px;
         }
-        .dropdown-button {
-            padding: 0.7rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            cursor: pointer;
-            width: 100%;
-            text-align: left;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .dropdown-button:hover {
-            background: rgba(255,107,107,0.3);
-            transform: translateY(-2px);
-        }
-        .dropdown-button::after {
-            content: '▼';
-            font-size: 0.8rem;
-            margin-left: 10px;
-        }
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: #181a24;
-            border-radius: 12px;
-            margin-top: 0.5rem;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-            display: none;
-            z-index: 10;
-        }
-        .dropdown-menu.show {
-            display: block;
-            animation: slideDown 0.3s ease;
-        }
-        .dropdown-item {
-            padding: 0.7rem 1.5rem;
-            color: #fff;
-            text-decoration: none;
-            display: block;
-            transition: all 0.2s ease;
-        }
-        .dropdown-item:hover {
-            background: rgba(255,107,107,0.2);
-        }
-
-        /* FILTERS */
-        .filters {
-            margin: 3rem auto;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            max-width: 1200px;
-        }
-        .filters button {
-            padding: 0.7rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-        .filters button:hover {
-            background: rgba(255,107,107,0.3);
-            transform: translateY(-2px);
-        }
-
-        /* ANIME CARDS */
-        .anime-card {
-            background: #181a24;
-            border-radius: 16px;
-            padding: 1.2rem;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-        }
-        .anime-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 24px rgba(255,107,107,0.3);
-        }
-
-        /* NEW ANIME SECTION */
-        .new-anime {
-            padding: 2rem 1rem;
-        }
-        .new-anime h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.2rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-        .nastrsmotvse {
-            text-align: right;
-            margin: 1rem 2rem;
-        }
-        .smotvse {
-            color: var(--accent-1);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        .smotvse:hover {
-            color: var(--accent-3);
-            text-decoration: underline;
-        }
-
-        /* RANANIM GRID */
-        .ranAnim {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(4, auto);
-            gap: 1.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1.5rem;
-        }
-        .ranAnim .anime-card-pop {
-            border-radius: 16px;
-            overflow: hidden;
-            background: #181a24;
-            position: relative;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-            box-shadow: var(--shadow);
-        }
-        .ranAnim .anime-card-pop:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-        .ranAnim .anime-card-pop img {
-            width: 100%;
-            height: 345px;
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
             object-fit: cover;
-            display: block;
-            border-radius: 16px;
+            border: 4px solid rgba(255, 107, 107, 0.4);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
         }
-        .ranAnim .anime-card-pop .info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1rem;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.7));
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        .avatar-placeholder {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff7eb3, #ff6b6b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
         }
-        .ranAnim .anime-card-pop .title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-            margin: 0 0 4px 0;
-            line-height: 1.4;
+        .change-avatar {
+            margin-top: 1rem;
         }
-        .ranAnim .anime-card-pop .meta {
-            font-size: 1rem;
-            color: #d5d5d5;
-            margin: 0;
+        .change-avatar label {
+            cursor: pointer;
+            background: rgba(255, 107, 107, 0.2);
+            padding: 0.7rem 1.5rem;
+            border-radius: 999px;
+            transition: all 0.3s;
+            display: inline-block;
         }
-        .ranAnim .anime-card-pop::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            background: linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0));
-            opacity: 0.85;
-            transition: opacity 0.25s ease;
+        .change-avatar label:hover {
+            background: rgba(255, 107, 107, 0.4);
+            transform: translateY(-2px);
         }
-        .ranAnim .anime-card-pop:hover::after {
-            opacity: 1;
+        input[type="file"] {
+            display: none;
         }
 
-        /* INFO SECTION */
-        .info {
-            padding: 3rem 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Информация и формы */
+        .info-grid {
+            display: grid;
+            gap: 2rem;
         }
-        .info h3, .info h4 {
-            background: white;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            margin-bottom: 1rem;
+        .field-group {
+            background: rgba(15, 17, 25, 0.6);
+            padding: 1.5rem;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .info p {
-            color: #d5d5d5;
-            max-width: 800px;
-            margin: 0 auto 2rem;
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #ff9ac1;
+        }
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.4);
+        }
+        .btn-save {
+            margin-top: 1.5rem;
+            padding: 0.9rem 2rem;
+            background: linear-gradient(90deg, #ff7eb3, #ff6b6b);
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        .btn-save:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
         }
 
         /* FOOTER */
         .site-footer {
-            margin-top: 4rem;
+            margin-top: 6rem;
             padding: 3rem 1rem;
             background: #12131a;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
         .site-footer p {
             margin-bottom: 1rem;
-            font-size: 1rem;
             opacity: 0.8;
         }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
         .footer-links a {
-            color: var(--accent-1);
+            color: #ff7eb3;
             text-decoration: none;
+            margin: 0 1rem;
             font-weight: 500;
-            transition: all 0.3s ease;
         }
         .footer-links a:hover {
-            color: var(--accent-3);
+            color: #ff6b6b;
             text-decoration: underline;
         }
 
-        /* THEME TOKENS */
-        :root {
-            --bg-start: #0c0d12;
-            --bg-end: #1a1b24;
-            --surface: #181a24;
-            --surface-2: #12131a;
-            --text: #f5f5f5;
-            --muted: #d5d5d5;
-            --accent-1: #ff7eb3;
-            --accent-2: #ff758c;
-            --accent-3: #ff6b6b;
-            --ring: rgba(255, 126, 179, 0.55);
-            --shadow: 0 6px 18px rgba(0,0,0,0.4);
-            --shadow-lg: 0 12px 28px rgba(0,0,0,0.5);
-        }
-
-        ::selection {
-            background: rgba(255, 126, 179, 0.25);
-            color: #fff;
-        }
-
-        /* ACCESSIBILITY FOCUS */
-        a:focus-visible,
-        button:focus-visible {
-            outline: none;
-            box-shadow: 0 0 0 2px var(--ring), 0 0 0 6px rgba(255, 107, 107, 0.2);
-            border-radius: 12px;
-        }
-
-        a { transition: color 0.25s ease, opacity 0.25s ease, text-shadow 0.25s ease; }
-
-        /* BUTTON VARIANTS IN FILTERS */
-        .filters .search-btn {
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-            color: #111;
-            font-weight: 700;
-        }
-        .filters .search-btn:hover { filter: brightness(1.08); }
-        .filters .clear-btn {
-            background: rgba(255,255,255,0.08);
-            color: #fff;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        /* SCROLLBAR */
-        ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-track { background: #0f1119; }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--accent-1), var(--accent-3));
-            border-radius: 999px;
-        }
-        ::-webkit-scrollbar-thumb:hover { filter: brightness(1.1); }
-
-        /* ANIMATIONS */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1200px) {
-            .ranAnim {
-                grid-template-columns: repeat(4, 1fr);
-                grid-template-rows: repeat(5, auto);
-                max-width: 100%;
-                padding: 1rem;
-            }
-        }
-        @media (max-width: 740px) {
-            .ranAnim {
-                grid-template-columns: repeat(3, 1fr);
-                grid-template-rows: auto;
-                max-width: 100%;
-                padding: 1rem;
-            }
-        }
         @media (max-width: 600px) {
-            header { flex-direction: column; gap: 1rem; }
-            .content h1 { font-size: 2.2rem; }
-            .content p { font-size: 1rem; }
-            .slider-btn { 
-                width: 42px; 
-                height: 42px; 
-                font-size: 1rem; 
-                border-radius: 10px;
-            }
-            .slider-btn-prev { left: -15px; }
-            .slider-btn-next { right: -15px; }
-            .ranAnim {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: auto;
-                max-width: 100%;
-                padding: 0.5rem;
-            }
-            .ranAnim .anime-card-pop img { height: 180px; }
-            .ranAnim .anime-card-pop .title { font-size: 1rem; }
-            .ranAnim .anime-card-pop .meta { font-size: 0.85rem; }
-            .custom-dropdown { min-width: 100%; }
-        }
-
-        /* REDUCED MOTION */
-        @media (prefers-reduced-motion: reduce) {
-            * { animation: none !important; transition: none !important; }
-        }
-
-        /* PROFILE SPECIFIC STYLES */
-        .profile-section {
-            max-width: 800px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: var(--surface);
-            border-radius: 16px;
-            box-shadow: var(--shadow);
-        }
-        .profile-section h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-        .profile-avatar {
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .profile-avatar img {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--accent-1);
-            box-shadow: 0 6px 16px rgba(255, 107, 107, 0.4);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .profile-avatar img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
-        }
-        .avatar-upload-container {
-            margin-top: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-        }
-        .avatar-upload-container label {
-            font-weight: 500;
-            color: var(--text);
-            font-size: 1rem;
-            cursor: pointer;
-        }
-        .avatar-upload-container input[type="file"] {
-            display: none;
-        }
-        .avatar-upload-button {
-            padding: 0.8rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-            color: #111;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-        .avatar-upload-button:hover {
-            filter: brightness(1.08);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-        }
-        .avatar-upload-button:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
-        }
-        .profile-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .profile-form label {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-        .profile-form input {
-            padding: 0.8rem 1.2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-            font-size: 1rem;
-            width: 100%;
-            transition: all 0.3s ease;
-        }
-        .profile-form input:focus {
-            border-color: var(--accent-1);
-            box-shadow: 0 0 0 3px rgba(255, 126, 179, 0.2);
-        }
-        .profile-form button {
-            padding: 0.8rem 1.5rem;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-            color: #111;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-        .profile-form button:hover {
-            filter: brightness(1.08);
-            transform: translateY(-2px);
-        }
-        .favorites-section {
-            padding: 3rem 1rem;
-        }
-        .favorites-section h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
+            main { padding: 1rem; }
+            .profile-card { padding: 1.5rem; }
+            .avatar { width: 120px; height: 120px; }
+            .avatar-placeholder { width: 120px; height: 120px; font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <div class="logo">
-            <a href="../БАЗа/home.html">Anitime</a>
+            <a href="../home.html">Anitime</a>
         </div>
-        <div class="account">
-            <a href="../вход/Профель.html">Профиль</a>
-            <a href="../вход/Вход.html">Выход</a>
-        </div>
+       
     </header>
 
-    <nav class="nav-menu">
-        <div class="account">
-            <a href="../nav-menu/top100.html">Топ 100</a>
-            <a href="../nav-menu/oponing.html">Онгоинги</a>
-            <a href="../nav-menu/anons.html">Анонсы</a>
-            <a href="#random">Случайное</a>
-        </div>
-    </nav>
-
     <main>
-        <section class="profile-section">
-            <h2>Ваш профиль</h2>
-            <div class="profile-avatar">
-                <img id="avatar-preview" src="placeholder-avatar.jpg" alt="Аватар пользователя">
-                <div class="avatar-upload-container">
-                    <label for="avatar-upload" class="avatar-upload-button">Загрузить новую аватарку</label>
-                    <input type="file" id="avatar-upload" accept="image/*">
-                </div>
-            </div>
-            <form class="profile-form">
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" value="user@example.com">
-                </div>
-                <div>
-                    <label for="old-password">Старый пароль:</label>
-                    <input type="password" id="old-password">
-                </div>
-                <div>
-                    <label for="new-password">Новый пароль:</label>
-                    <input type="password" id="new-password">
-                </div>
-                <div>
-                    <label for="confirm-password">Подтвердите новый пароль:</label>
-                    <input type="password" id="confirm-password">
-                </div>
-                <button type="submit">Сохранить изменения</button>
-            </form>
-        </section>
+        <div class="profile-card">
+            <h1>Мой профиль</h1>
 
-        <section class="favorites-section">
-            <h2>Любимые аниме</h2>
-            <div class="ranAnim">
-                <div class="anime-card-pop">
-                    <img src="placeholder-anime1.jpg" alt="Аниме 1">
-                    <div class="info">
-                        <h3 class="title">Название аниме 1</h3>
-                        <p class="meta">Год: 2020 | Жанр: Фэнтези</p>
-                    </div>
+            <!-- Аватар -->
+            <div class="avatar-section">
+                <div class="avatar-wrapper">
+                    <div class="avatar-placeholder" id="avatarPlaceholder">А</div>
+                    <img src="" alt="Аватар" class="avatar" id="avatarImg" style="display:none;">
                 </div>
-                <div class="anime-card-pop">
-                    <img src="placeholder-anime2.jpg" alt="Аниме 2">
-                    <div class="info">
-                        <h3 class="title">Название аниме 2</h3>
-                        <p class="meta">Год: 2018 | Жанр: Драма</p>
-                    </div>
+                <div class="change-avatar">
+                    <label for="avatarUpload">Изменить аватар</label>
+                    <input type="file" id="avatarUpload" accept="image/*">
                 </div>
             </div>
-        </section>
+
+            <div class="info-grid">
+
+                <!-- Email -->
+                <div class="field-group">
+                    <label>Электронная почта</label>
+                    <input type="email" value="user@example.com" readonly>
+                </div>
+
+                <!-- Смена пароля -->
+                <div class="field-group">
+                    <label>Новый пароль</label>
+                    <input type="password" placeholder="Введите новый пароль" id="newPassword">
+                    
+                    <label style="margin-top: 1rem;">Подтвердите новый пароль</label>
+                    <input type="password" placeholder="Повторите пароль" id="confirmPassword">
+                    
+                    <button class="btn-save" onclick="changePassword()">Сохранить новый пароль</button>
+                </div>
+
+            </div>
+        </div>
     </main>
 
     <footer class="site-footer">
@@ -758,19 +276,43 @@
     </footer>
 
     <script>
-        const avatarInput = document.getElementById('avatar-upload');
-        const avatarPreview = document.getElementById('avatar-preview');
-
-        avatarInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
+        // Загрузка аватара
+        document.getElementById('avatarUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
             if (file) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    avatarPreview.src = e.target.result;
-                };
+                reader.onload = function(ev) {
+                    const img = document.getElementById('avatarImg');
+                    img.src = ev.target.result;
+                    img.style.display = 'block';
+                    document.getElementById('avatarPlaceholder').style.display = 'none';
+                }
                 reader.readAsDataURL(file);
             }
         });
+
+        // Имитация смены пароля (можно подключить к бэкенду)
+        function changePassword() {
+            const newPass = document.getElementById('newPassword').value;
+            const confirmPass = document.getElementById('confirmPassword').value;
+
+            if (newPass === '' || confirmPass === '') {
+                alert('Заполните оба поля');
+                return;
+            }
+            if (newPass !== confirmPass) {
+                alert('Пароли не совпадают!');
+                return;
+            }
+            if (newPass.length < 6) {
+                alert('Пароль должен быть не менее 6 символов');
+                return;
+            }
+
+            alert('Пароль успешно изменён!');
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmPassword').value = '';
+        }
     </script>
 </body>
 </html>
