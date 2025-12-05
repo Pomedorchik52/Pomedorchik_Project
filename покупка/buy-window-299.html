@@ -327,6 +327,24 @@
         </div>
     </footer>
     <script>
+        // Luhn algorithm implementation
+        function isValidLuhn(cardNumber) {
+            let sum = 0;
+            let doubleUp = false;
+            for (let i = cardNumber.length - 1; i >= 0; i--) {
+                let digit = parseInt(cardNumber.charAt(i), 10);
+                if (doubleUp) {
+                    digit *= 2;
+                    if (digit > 9) {
+                        digit -= 9;
+                    }
+                }
+                sum += digit;
+                doubleUp = !doubleUp;
+            }
+            return (sum % 10) === 0;
+        }
+
         document.getElementById('checkout-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const cardNumber = document.getElementById('card-number');
@@ -344,7 +362,7 @@
 
             // Card number validation
             const cardNumberValue = cardNumber.value.replace(/\s/g, '');
-            if (!/^\d{16}$/.test(cardNumberValue)) {
+            if (!isValidLuhn(cardNumberValue)) {
                 cardNumber.closest('.form-group').classList.add('error');
                 isValid = false;
             }

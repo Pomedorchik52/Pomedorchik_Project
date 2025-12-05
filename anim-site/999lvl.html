@@ -554,8 +554,8 @@
                 </div>
             </div>
         </div>
-        <div class="video-container fade-in">
-            <video controls poster="https://via.placeholder.com/1000x562" id="video-player">
+        <div class="video-container fade-in" tabindex="0">
+            <video controls poster="https://screenapp.io/app/v/56BLJ28VZh" id="video-player">
                 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" id="video-source">
                 <track src="path/to/subtitles_episode1.vtt" kind="subtitles" srclang="ru" label="Русские субтитры" id="subtitle-track" disabled>
                 <p class="video-error">Ваш браузер не поддерживает видео или файл не найден.</p>
@@ -599,9 +599,9 @@
     <script>
         const videoSources = {
             episode1: {
-                dub: "https://www.w3schools.com/html/mov_bbb.mp4",
-                sub: "https://www.w3schools.com/html/mov_bbb.mp4",
-                original: "https://www.w3schools.com/html/mov_bbb.mp4",
+                dub: "https://screenapp.io/app/v/56BLJ28VZh",
+                sub: "https://screenapp.io/app/v/56BLJ28VZh",
+                original: "https://screenapp.io/app/v/56BLJ28VZh",
                 subtitles: "path/to/subtitles_episode1.vtt"
             },
             episode2: {
@@ -672,6 +672,34 @@
             video.style.display = 'block';
             videoContainer.classList.remove('playing');
         }
+
+        function isValidHttpUrl(u) {
+            try {
+                const parsed = new URL(u);
+                return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+            } catch (_) {
+                return false;
+            }
+        }
+
+        function loadVideoFromUrl(u) {
+            videoError.style.display = 'none';
+            subtitleTrack.setAttribute('disabled', '');
+            videoSource.setAttribute('src', u);
+            video.load();
+            video.style.display = 'block';
+            videoContainer.classList.remove('playing');
+        }
+
+        function handlePaste(e) {
+            const text = (e.clipboardData || window.clipboardData)?.getData('text');
+            if (text && isValidHttpUrl(text)) {
+                e.preventDefault();
+                loadVideoFromUrl(text.trim());
+            }
+        }
+        videoContainer.addEventListener('paste', handlePaste);
+        document.addEventListener('paste', handlePaste);
 
         // Check if video source is valid
         video.addEventListener('error', () => {
@@ -827,6 +855,11 @@
 
         // Load comments on page load
         loadComments();
+
+        const urlParam = new URLSearchParams(location.search).get('video');
+        if (urlParam && isValidHttpUrl(urlParam)) {
+            loadVideoFromUrl(urlParam);
+        }
     </script>
 </body>
 </html>
