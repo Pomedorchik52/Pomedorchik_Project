@@ -19,7 +19,6 @@
             color: #f5f5f5;
             line-height: 1.6;
         }
-
         /* HEADER */
         header {
             position: sticky;
@@ -69,7 +68,6 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
         }
-
         /* MAIN CONTENT */
         main {
             max-width: 1400px;
@@ -86,7 +84,9 @@
             background: transparent;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            height: 400px; /* Fixed height to match image */
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
         }
         .announcement-card:hover {
             transform: translateY(-5px);
@@ -110,7 +110,10 @@
         .announcement-title h2 {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #ff7eb3;
+            background: linear-gradient(90deg, #ff7eb3, #ff758c, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         .announcement-content {
@@ -121,14 +124,16 @@
             bottom: 0;
             background: rgba(15, 17, 25, 0.9);
             backdrop-filter: blur(5px);
-            padding: 1.5rem;
+            padding: 2rem;
             opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
             transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
+            align-items: center;
+            border-radius: 20px;
         }
         .announcement-card:hover .announcement-content {
             opacity: 1;
@@ -136,22 +141,38 @@
             transform: translateY(0);
         }
         .announcement-content p {
-            font-size: 1rem;
-            opacity: 0.85;
-            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            opacity: 1;
+            margin-bottom: 1.5rem;
+            text-align: center;
         }
         .announcement-meta {
             display: flex;
-            justify-content: space-between;
-            font-size: 0.9rem;
-            opacity: 0.7;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 1;
+            margin-top: auto;
         }
         .announcement-meta span {
-            background: rgba(255, 107, 107, 0.1);
-            padding: 0.3rem 0.8rem;
-            border-radius: 999px;
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            font-weight: 600;
         }
-
+        .announcement-meta span:first-child {
+            color: #ff758c;
+        }
+        .announcement-meta span:first-child::before {
+            content: '📅 ';
+        }
+        .announcement-meta span:last-child {
+            color: #ff6b6b;
+        }
+        .announcement-meta span:last-child::before {
+            content: '🎭 ';
+        }
         /* FOOTER */
         .site-footer {
             margin-top: 4rem;
@@ -181,14 +202,12 @@
             color: #ff6b6b;
             text-decoration: underline;
         }
-
         /* ACCESSIBILITY */
         a:focus-visible {
             outline: none;
             box-shadow: 0 0 0 2px rgba(255, 126, 179, 0.55), 0 0 0 6px rgba(255, 107, 107, 0.2);
             border-radius: 12px;
         }
-
         /* RESPONSIVE DESIGN */
         @media (max-width: 600px) {
             header {
@@ -211,14 +230,17 @@
             .announcement-title h2 {
                 font-size: 1.5rem;
             }
+            .announcement-content {
+                padding: 1.5rem;
+            }
             .announcement-content p {
-                font-size: 0.95rem;
+                font-size: 1rem;
             }
             .announcement-meta {
-                font-size: 0.85rem;
+                font-size: 0.9rem;
+                gap: 1rem;
             }
         }
-
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation: none !important;
@@ -237,7 +259,6 @@
             <a href="../вход/регестрация.html">Регистрация</a>
         </div>
     </header>
-
     <main>
         <section class="announcements">
             <div class="announcement-card">
@@ -398,7 +419,6 @@
             </div>
         </section>
     </main>
-
     <footer class="site-footer">
         <div class="footer-content">
             <p>© 2025 Anitime — Все права защищены</p>
