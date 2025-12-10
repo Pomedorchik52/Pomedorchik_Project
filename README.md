@@ -44,11 +44,12 @@ Anitime предлагает минималистичный интерфейс, 
 
 ## Установка и запуск
 <h2>Python</h2> 
-```bash
-pip python-telegram-bot
-```
+<pre>
+  <code>
+    pip python-telegram-bot
+  </code>
+</pre>
 
----
 
 ## Автор
 Проект выполнен в учебных целях.  
